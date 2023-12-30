@@ -15,7 +15,7 @@ export async function uploadFile({ Body, Key, ContentType }) {
   const command = new PutObjectCommand({
     Bucket: "sharedesk",
     Body: buffer,
-    Key,
+    Key: `${Dir}/${Key}`,
     ContentType,
   });
 
