@@ -1,6 +1,7 @@
 import { NextResponse } from "next/server";
 import prisma from "@/utils/prisma";
 import { uploadFile } from "@/lib/uploadFile";
+import slugify from "slugify";
 
 export async function GET() {
   try {
@@ -26,33 +27,58 @@ export async function POST(req) {
   const images = formData.getAll("images");
   const category = formData.get("category");
 
-  // send image to aws s3
-
-  // upload featuredImage file to aws
+  let productId = "";
+  // save product (spaces) to database
   try {
-    const uploadFeaturedImage = await uploadFile({
-      Body: featuredImage,
-      Key: featuredImage.name,
-      ContentType: featuredImage.type,
-      Dir: "products",
+    const allImages = [];
+    images.forEach((image) => {
+      allImages.push(image.name);
     });
-    console.log(uploadFeaturedImage);
+
+    const createProduct = await prisma.product.create({
+      data: {
+        name,
+        slug: slugify(name, { lower: true, replacement: "-" }),
+        description,
+        featuredImage: featuredImage.name,
+        images: allImages,
+        category,
+      },
+    });
+
+    productId = createProduct.id;
+    console.log(createProduct);
   } catch (error) {
     console.log(error);
   }
 
-  // save product (spaces) to database
+  // Send Image ke AWS S3
+  try {
+    //   Upload featured image file
+    const uploadFeaturedImage = await uploadFile({
+      Body: featuredImage,
+      Key: featuredImage.name,
+      ContentType: featuredImage.type,
+      Dir: `products/${productId}`,
+    });
+    console.log(uploadFeaturedImage);
+
+    //   Upload images file
+    images.forEach(async (item) => {
+      const uploadFeaturedImage = await uploadFile({
+        Body: item,
+        Key: item.name,
+        ContentType: item.type,
+        Dir: `products/${productId}`,
+      });
+      console.log(uploadFeaturedImage);
+    });
+  } catch (error) {
+    console.log(error);
+  }
+
   return NextResponse.json(
-    {
-      data: {
-        name,
-        description,
-        featuredImage,
-        images,
-        category,
-      },
-      message: "Product created successfully",
-    },
+    { message: "Product created successfully" },
     { status: 201 }
   );
 }
