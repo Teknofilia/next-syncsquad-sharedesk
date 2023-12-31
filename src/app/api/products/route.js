@@ -2,10 +2,20 @@ import { NextResponse } from "next/server";
 import prisma from "@/utils/prisma";
 import { uploadFile } from "@/lib/uploadFile";
 import slugify from "slugify";
+import { verify } from "jsonwebtoken";
+import { cookies } from "next/headers";
 
 export async function GET() {
   try {
-    const allProducts = await prisma.product.findMany();
+    const allProducts = await prisma.product.findMany({
+      include: {
+        user: {
+          select: {
+            username: true,
+          },
+        },
+      },
+    });
     return NextResponse.json(
       { data: allProducts, message: "Products fetched successfully" },
       { status: 200 }
@@ -21,11 +31,12 @@ export async function GET() {
 
 export async function POST(req) {
   const formData = await req.formData();
-  const name = formData.get("name");
+  const name = formData.get("name") ?? ""; // Use nullish coalescing operator to provide a default value if `formData.get("name")` is undefined
   const description = formData.get("description");
   const featuredImage = formData.get("featuredImage");
   const images = formData.getAll("images");
   const category = formData.get("category");
+  const userId = formData.get("userId");
 
   let productId = "";
   // save product (spaces) to database
@@ -43,6 +54,7 @@ export async function POST(req) {
         featuredImage: featuredImage.name,
         images: allImages,
         category,
+        userId,
       },
     });
 
