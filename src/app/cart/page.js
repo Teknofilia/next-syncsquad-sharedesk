@@ -10,6 +10,7 @@ export default function Page() {
     newCart splice(index, 1);
     setCart(newCart);
   }
+  
   const totalPrice = cart.reduce((acc, item) => acc + item.price, 0);
   
   
