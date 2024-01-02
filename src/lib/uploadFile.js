@@ -8,14 +8,14 @@ const s3Client = new S3Client({
   },
 });
 
-export async function uploadFile({ Body, Key, ContentType }) {
+export async function uploadFile({ Body, Key, ContentType, Dir }) {
   const bytes = await Body.arrayBuffer(); // File -> ArrayBuffer -> Buffer.from(ArrayBuffer)
   const buffer = Buffer.from(bytes);
 
   const command = new PutObjectCommand({
     Bucket: "sharedesk",
     Body: buffer,
-    Key,
+    Key: `${Dir}/${Key}`,
     ContentType,
   });
 
