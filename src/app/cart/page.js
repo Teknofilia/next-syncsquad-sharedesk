@@ -34,7 +34,7 @@ export default function Page() {
             <div className="flex gap-4">
             <h3>Rp.{item.price}</h3>
             <Button onClick={()=> removeItem(index)} size="sm" color="danger" isIconOnly>
-                <x size={15}/>
+                <X size={15}/>
             </Button>
             </div>
             </div>
