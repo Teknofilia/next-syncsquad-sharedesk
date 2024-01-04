@@ -2,8 +2,6 @@ import { NextResponse } from "next/server";
 import prisma from "@/utils/prisma";
 import { uploadFile } from "@/lib/uploadFile";
 import slugify from "slugify";
-import { verify } from "jsonwebtoken";
-import { cookies } from "next/headers";
 
 export async function GET() {
   try {
@@ -31,14 +29,16 @@ export async function GET() {
 
 export async function POST(req) {
   const formData = await req.formData();
-  const name = formData.get("name") ?? ""; // Use nullish coalescing operator to provide a default value if `formData.get("name")` is undefined
+  const name = formData.get("name");
   const description = formData.get("description");
   const featuredImage = formData.get("featuredImage");
   const images = formData.getAll("images");
   const category = formData.get("category");
+  const guestCount = formData.get("guestCount");
+  const roomCount = formData.get("roomCount");
   const userId = formData.get("userId");
 
-  let productId = "";
+  let product_listingId = "";
   // save product (spaces) to database
   try {
     const allImages = [];
@@ -54,11 +54,13 @@ export async function POST(req) {
         featuredImage: featuredImage.name,
         images: allImages,
         category,
+        guestCount,
+        roomCount,
         userId,
       },
     });
 
-    productId = createProduct.id;
+    product_listingId = createProduct.id;
     console.log(createProduct);
   } catch (error) {
     console.log(error);
@@ -71,7 +73,7 @@ export async function POST(req) {
       Body: featuredImage,
       Key: featuredImage.name,
       ContentType: featuredImage.type,
-      Dir: `products/${productId}`,
+      Dir: `products/${product_listingId}`,
     });
     console.log(uploadFeaturedImage);
 
@@ -81,7 +83,7 @@ export async function POST(req) {
         Body: item,
         Key: item.name,
         ContentType: item.type,
-        Dir: `products/${productId}`,
+        Dir: `products/${product_listingId}`,
       });
       console.log(uploadFeaturedImage);
     });
