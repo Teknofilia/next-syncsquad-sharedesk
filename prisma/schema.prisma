@@ -17,8 +17,57 @@ model User {
   firstName String
   lastName String
   email String @unique
-  username String @unique
+  username String 
   password String
   createdAt DateTime @default(now())
   updatedAt DateTime @updatedAt
+  products Product_Listing[]
+  reservations Reservation[]
+  reviews Review[]
+}
+
+model Product_Listing {
+  id String @id @default(uuid())
+  name String
+  slug String @unique
+  description String
+  featuredImage String
+  images String[]
+  category String
+  guestCount Int
+  roomCount Int
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  userId String
+  user User @relation(fields: [userId], references: [id])
+  
+  reservation Reservation[]
+  review Review[]
+}
+
+model Reservation {
+  id String @id @default(uuid())
+  startDate DateTime
+  endDate DateTime
+  totalPrice Int
+  createdAt DateTime @default(now())
+
+  userId String @unique
+  user User @relation(fields: [userId], references: [id], onDelete: Cascade)
+
+  product_listingId String
+  product_listing Product_Listing @relation(fields: [product_listingId], references: [id], onDelete: Cascade)
+}
+
+model Review {
+  id String @id @default(uuid())
+  review String
+  rating String
+
+  userId String @unique
+  user User @relation(fields: [userId], references: [id], onDelete: Cascade)
+
+  product_listingId String
+  product_listing Product_Listing @relation(fields: [product_listingId], references: [id], onDelete: Cascade)
 }
