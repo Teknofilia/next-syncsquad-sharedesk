@@ -14,7 +14,7 @@ export default function Page() {
     setCart(newCart);
   }
   
-  //const totalPrice = cart.reduce((acc, item) => acc + item.price, 0);
+  const totalPrice = cart.reduce((acc, item) => acc + item.price, 0);
       
     return (
     <main className="space-y-8">
@@ -49,7 +49,7 @@ export default function Page() {
           <section className="flex justify-between border-t-1 pt-8">
             <h4>Total</h4>
             <div className="space-y-4">
-              <h3>$ {totalPrice}</h3>
+              <h3>Rp. {totalPrice}</h3>
               <Button>Book</Button>
             </div>
           </section>
