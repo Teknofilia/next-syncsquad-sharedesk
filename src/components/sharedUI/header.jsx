@@ -5,6 +5,7 @@ import { useRouter } from "next/navigation";
 import { IconCart } from "../cart/components/IconCart";
 
 export const Header = () => {
+  
   const router = useRouter();
 
   // function queryHandler(e) {
