@@ -3,17 +3,17 @@ import prisma from "@/utils/prisma";
 
 export async function POST(req) {
   const formData = await req.formData();
-  const user = formData.get("user");
-  const review = formData.get("startDate");
-  const rating = formData.get("endDate");
+  // const user = formData.get("user");
+  const review = formData.get("review");
+  const rating = formData.get("rating");
 
   const userId = formData.get("userId");
   const product_listingId = formData.get("product_listingId");
-
+  console.log(formData);
   try {
     const createReview = await prisma.review.create({
       data: {
-        user,
+        // user,
         review,
         rating,
         userId,
@@ -21,7 +21,7 @@ export async function POST(req) {
       },
     });
     // product_listingId = createReservation.id;
-    console.log(createReservation);
+    console.log(createReview);
     return NextResponse.json(
       { data: createReview, message: "Review created successfully" },
       { status: 201 }
