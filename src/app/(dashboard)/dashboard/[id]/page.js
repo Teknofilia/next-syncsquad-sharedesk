@@ -16,19 +16,19 @@ export default async function DashboardDetailPage({ params }) {
   const data = await getProductDetail(params.id)
 
     return (
-        <div>
-            <div className="flex flex-wrap justify-center space-x-4">
+        <div className="w-full">
+            <div className="flex flex-wrap justify-center space-x-4 mb-6">
                 {data.images.map((value, index) => {
                     return (
                         <div key={index}>
-                            <img className="rounded-lg" src={value} alt="" height={300} width={200}/>
+                            <img className="rounded-lg" src={value} alt="" height={350} width={250}/>
                         </div>
                     )
                 })}
             </div>
-            <div>Name: {data.name}</div>
-            <div>Description: {data.description}</div>
-            <div>Category: {data.category}</div>
+            <div><h1>{data.name}</h1></div>
+            <div><h3>{data.description}</h3></div>
+            <div><p>Price: Rp. 400.000 / Day</p></div>
         </div>
     )
 }
