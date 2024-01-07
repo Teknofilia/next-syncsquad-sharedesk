@@ -2,9 +2,10 @@ import React from "react";
 import { ProductCard } from "./productCard";
 
 export const AllProducts = ({ productsData }) => {
+  console.log(productsData);
   return (
     <section className="grid grid-cols-3 gap-12">
-      {productsData.map(({ id, name, featuredImage, slug, price, user }) => {
+      {/* {productsData.map(({ id, name, featuredImage, slug, price, user }) => {
         return (
           <ProductCard
             key={id}
@@ -16,7 +17,7 @@ export const AllProducts = ({ productsData }) => {
             username={user.username}
           />
         );
-      })}
+      })} */}
     </section>
   );
 };
