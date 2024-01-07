@@ -1,4 +1,5 @@
 import InputSearchComponent from "./component/InputSearch"
+import prisma from "@/utils/prisma"
 
 /** 
  * @param {string} name  
@@ -13,6 +14,10 @@ async function getProducts(name) {
   const responseDataListProduct = await dataListProduct.json()
 
   return responseDataListProduct.data
+
+  // const dataListProduct = await prisma.Product_Listing.findMany(name);
+
+  // return dataListProduct.data
 
 }
 
@@ -29,7 +34,7 @@ export default async function DashboardPage({searchParams}) {
       </div>
       <div className=" grid gap-4 grid-cols-3 mb-10">
         {
-          data.map((value, index) => {
+          data?.map((value, index) => {
 
             return (
 
