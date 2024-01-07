@@ -20,7 +20,7 @@ export async function POST(req) {
         product_listingId,
       },
     });
-    product_listingId = createReservation.id;
+    // product_listingId = createReservation.id;
     console.log(createReservation);
     return NextResponse.json(
       { data: createReview, message: "Review created successfully" },

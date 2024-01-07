@@ -3,7 +3,7 @@ import prisma from "@/utils/prisma";
 
 export async function POST(req) {
   const formData = await req.formData();
-  const user = formData.get("user");
+  // const user = formData.get("user");
   const startDate = formData.get("startDate");
   const endDate = formData.get("endDate");
   const totalPrice = formData.getAll("totalPrice");
@@ -14,15 +14,15 @@ export async function POST(req) {
   try {
     const createReservation = await prisma.reservation.create({
       data: {
-        user,
+        // user,
         startDate,
         endDate,
-        totalPrice,
+        totalPrice: Number(totalPrice),
         userId,
         product_listingId,
       },
     });
-    product_listingId = createReservation.id;
+    // product_listingId = createReservation.id;
     console.log(createReservation);
     return NextResponse.json(
       { data: createReservation, message: "Reservation created successfully" },

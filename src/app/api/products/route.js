@@ -157,6 +157,7 @@ export async function POST(req) {
   const guestCount = formData.get("guestCount");
   const roomCount = formData.get("roomCount");
   const userId = formData.get("userId");
+  console.log(formData);
 
   let product_listingId = "";
   // save product (spaces) to database
@@ -166,7 +167,7 @@ export async function POST(req) {
       allImages.push(image.name);
     });
 
-    const createProduct = await prisma.product_listing.create({
+    const createProduct = await prisma.product_Listing.create({
       data: {
         name,
         slug: slugify(name, { lower: true, replacement: "-" }),
@@ -174,8 +175,8 @@ export async function POST(req) {
         featuredImage: featuredImage.name,
         images: allImages,
         category,
-        guestCount,
-        roomCount,
+        guestCount: Number(guestCount),
+        roomCount: Number(roomCount),
         userId,
       },
     });
