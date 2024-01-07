@@ -36,7 +36,6 @@ export default async function DashboardPage({searchParams}) {
   const { name } = searchParams
 
   const data = await getProducts(name)
-  console.log(data)
 
   return (
     <div className="">
@@ -50,11 +49,11 @@ export default async function DashboardPage({searchParams}) {
             return (
 
               <div key={index} className="max-w-sm bg-white border border-gray-200 rounded-lg shadow dark:bg-gray-800 dark:border-gray-700">
-                <a href="#">
+                <a href={`/dashboard/${value.id}`}>
                   <img className="rounded-t-lg" src={value.featuredImage} alt="" />
                 </a>
                 <div className="p-5">
-                  <a href="#">
+                  <a href={`/dashboard/${value.id}`}>
                     <h5 className="mb-2 text-2xl font-bold tracking-tight text-gray-900 dark:text-white">
                       {value.name}
                     </h5>
