@@ -1,13 +1,18 @@
 async function getProductDetail(id) {
 
-    const dataListProduct = await fetch(`http://localhost:3000/api/products/${id}`, {
-      method: "GET",
-      next: { revalidate: 0 }
-    })
+    const dataListProduct = await prisma.Product_Listing.findMany(id);
+    //console.log(dataListProduct)
+
+    return dataListProduct
+
+    // const dataListProduct = await fetch(`http://localhost:3000/api/products/${id}`, {
+    //   method: "GET",
+    //   next: { revalidate: 0 }
+    // })
   
-    const responseDataListProduct = await dataListProduct.json()
+    // const responseDataListProduct = await dataListProduct.json()
   
-    return responseDataListProduct.data
+    // return responseDataListProduct.data
   
   }
 
@@ -27,7 +32,7 @@ export default async function DashboardDetailPage({ params }) {
                 })}
             </div>
             <div><h1>{data.name}</h1></div>
-            <div><h3>{data.description}</h3></div>
+            <div><h5>{data.description}</h5></div>
             <div><p>Price: Rp. 400.000 / Day</p></div>
         </div>
     )

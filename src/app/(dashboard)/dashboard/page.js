@@ -4,20 +4,30 @@ import prisma from "@/utils/prisma"
 /** 
  * @param {string} name  
 */
-async function getProducts(name) {
+async function getProducts(nameParam) {
 
-  const dataListProduct = await fetch(`http://localhost:3000/api/products?name=${name}`, {
-    method: "GET",
-    next: { revalidate: 0 }
-  })
+  // const dataListProduct = await fetch(`http://localhost:3000/api/products?name=${name}`, {
+  //   method: "GET",
+  //   next: { revalidate: 0 }
+  // })
 
-  const responseDataListProduct = await dataListProduct.json()
+  // const responseDataListProduct = await dataListProduct.json()
 
-  return responseDataListProduct.data
+  // return responseDataListProduct.data
 
-  // const dataListProduct = await prisma.Product_Listing.findMany(name);
+  const dataListProduct = await prisma.Product_Listing.findMany({
+    where: {
+      name: {
+        contains: nameParam || "",
+        mode: "insensitive",
+      },
+    },
+  });
 
-  // return dataListProduct.data
+  //const dataListProduct = await prisma.Product_Listing.findMany(name);
+  //console.log(dataListProduct)
+
+  return dataListProduct
 
 }
 
@@ -26,6 +36,7 @@ export default async function DashboardPage({searchParams}) {
   const { name } = searchParams
 
   const data = await getProducts(name)
+  console.log(data)
 
   return (
     <div className="">
