@@ -157,7 +157,7 @@ export async function POST(req) {
   const guestCount = formData.get("guestCount");
   const roomCount = formData.get("roomCount");
   const userId = formData.get("userId");
-  console.log(formData);
+  // console.log(formData);
 
   let product_listingId = "";
   // save product (spaces) to database

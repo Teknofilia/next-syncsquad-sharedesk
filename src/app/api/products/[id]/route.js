@@ -92,11 +92,37 @@ import prisma from "@/utils/prisma";
 export async function GET(request, { params }) {
   const ids = params.id
 
-  return NextResponse.json(
-    {
-      data: data[ids],      
-      message:"Products fetched successfully"
-    },
-    {status:200}
-  )
+  let product;
+
+  try {
+    if (query) {
+      product = await prisma.Product_Listing.findMany({
+        where: {
+          id: {
+            contains: ids || "",
+            mode: "insensitive",
+          },
+        },
+      });
+    } else {
+      product = await prisma.Product_Listing.findMany();
+    }
+
+    return NextResponse.json({ message: "Product fetched succesfully!", data: allProducts }, { status: 200 });
+  } catch (error) {
+    console.log(error);
+    return NextResponse.json({ error: "Product fetch failed!" }, { status: 200 });
+  }
 }
+
+// export async function GET(request, { params }) {
+//   const ids = params.id
+
+//   return NextResponse.json(
+//     {
+//       data: data[ids],      
+//       message:"Products fetched successfully"
+//     },
+//     {status:200}
+//   )
+// }
