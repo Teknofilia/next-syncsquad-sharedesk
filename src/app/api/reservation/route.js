@@ -36,3 +36,37 @@ export async function POST(req) {
     );
   }
 }
+
+export async function GET(req) {
+  const searchParams = req.nextUrl.searchParams;
+  const query = searchParams.get("product_listindId");
+
+  let allReservations;
+
+  try {
+    if (query) {
+      allReservations = await prisma.reservation.findMany({
+        where: {
+          name: {
+            contains: query || "",
+            mode: "insensitive",
+          },
+        },
+      });
+    } else {
+      allReservations = await prisma.reservation.findMany();
+    }
+    //console.log(allReservations)
+
+    return NextResponse.json(
+      { message: "Reservations fetched succesfully!", data: allReservations },
+      { status: 200 }
+    );
+  } catch (error) {
+    console.log(error);
+    return NextResponse.json(
+      { error: "Reservations fetch failed!" },
+      { status: 500 }
+    );
+  }
+}

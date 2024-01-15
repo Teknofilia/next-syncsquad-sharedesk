@@ -34,3 +34,37 @@ export async function POST(req) {
     );
   }
 }
+
+export async function GET(req) {
+  const searchParams = req.nextUrl.searchParams;
+  const query = searchParams.get("product_listingId");
+
+  let allReviews;
+
+  try {
+    if (query) {
+      allReviews = await prisma.review.findMany({
+        where: {
+          name: {
+            contains: query || "",
+            mode: "insensitive",
+          },
+        },
+      });
+    } else {
+      allReviews = await prisma.review.findMany();
+    }
+    //console.log(allReviews)
+
+    return NextResponse.json(
+      { message: "Review fetched succesfully!", data: allReviews },
+      { status: 200 }
+    );
+  } catch (error) {
+    console.log(error);
+    return NextResponse.json(
+      { error: "Review fetch failed!" },
+      { status: 500 }
+    );
+  }
+}
