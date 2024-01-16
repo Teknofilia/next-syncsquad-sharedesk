@@ -39,7 +39,7 @@ export async function POST(req) {
 
 export async function GET(req) {
   const searchParams = req.nextUrl.searchParams;
-  const query = searchParams.get("product_listindId");
+  const query = searchParams.get("product_listingId");
 
   let allReservations;
 

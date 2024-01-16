@@ -15,7 +15,7 @@ async function getProducts(nameParam) {
 
   // return responseDataListProduct.data
 
-  const dataListProduct = await prisma.Product_Listing.findMany({
+  const dataListProduct = await prisma.product_Listing.findMany({
     where: {
       name: {
         contains: nameParam || "",
