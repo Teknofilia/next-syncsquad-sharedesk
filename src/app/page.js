@@ -7,7 +7,7 @@ import Image from "next/image";
 
 export default async function Home() {
   return (
-    <main className="max-w-5xl m-auto py-8 space-y-20">
+    <main className="max-w-5xl m-auto py-8 space-y-10">
       <Headerhome />
       <section className="text-center w-[700px] m-auto space-y-2">
         <h1>
@@ -19,10 +19,10 @@ export default async function Home() {
       </section>
     
     
-<section className="py-10 grid grid-cols-3 grid-rows-2 gap-4 p-4 m-auto">
-    <div className="row-span-2 col-span-2 flex max-w-full"><Image src="/assets/ws1.jpg" width={725} height={300} alt="pic" /></div>
-    <div > <Image src="/assets/ws2.jpg" width={325} height={275} alt="pic" /></div>
-    <div className="col-start-2 row-start-2"><Image src="/assets/ws3.jpg" width={325} height={275} alt="pic" /></div>
+<section className="py-10 grid grid-cols-3 grid-rows-2 gap-2 p-0 m-auto">
+    <div className="row-span-2 col-span-2 flex max-w-full"><Image  className= "rounded-lg shadow-md" src="/assets/ws1.jpg" width={670} height={420} alt="pic" /></div>
+    <div > <Image className= "rounded-lg shadow-md" src="/assets/ws2.jpg" width={336} height={275} alt="pic" /></div>
+    <div className="col-start-3 row-start-2"><Image  className= "rounded-lg shadow-md" src="/assets/ws3.jpg" width={336} height={275} alt="pic" /></div>
 </section>
     
 <section className="py-10 bg-gray-100 rounded-lg border-2 border-zinc-300 shadow-md">
