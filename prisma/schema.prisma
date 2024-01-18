@@ -44,6 +44,7 @@ model Product_Listing {
   
   reservation Reservation[]
   review Review[]
+  product_detail Product_Detail[]
 }
 
 model Reservation {
@@ -58,6 +59,8 @@ model Reservation {
 
   product_listingId String
   product_listing Product_Listing @relation(fields: [product_listingId], references: [id], onDelete: Cascade)
+
+  reservation_detail Reservation_Detail[]
 }
 
 model Review {
@@ -70,4 +73,33 @@ model Review {
 
   product_listingId String
   product_listing Product_Listing @relation(fields: [product_listingId], references: [id], onDelete: Cascade)
+}
+
+model Master_Jam {
+  id String @id @default(uuid())
+  description String
+  isActive Boolean
+
+  products_detail Product_Detail[]
+  reservations_detail Reservation_Detail[]
+}
+model Product_Detail {
+  id String @id @default(uuid())
+
+  product_listingId String
+  product_listing Product_Listing @relation(fields: [product_listingId], references: [id], onDelete: Cascade)
+
+  jamId String
+  jam Master_Jam @relation(fields: [jamId], references: [id], onDelete: Cascade)
+
+}
+
+model Reservation_Detail {
+  id String @id @default(uuid())
+
+  reservationId String
+  reservation Reservation @relation(fields: [reservationId], references: [id], onDelete: Cascade)
+
+  jamId String
+  jam Master_Jam @relation(fields: [jamId], references: [id], onDelete: Cascade)
 }

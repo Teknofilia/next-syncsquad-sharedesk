@@ -1,16 +1,19 @@
-"use client";
+// it is copied from  indrazm digicommerce,
+// error when build in vercel, commented for now
 
-import { Badge } from "@nextui-org/react";
-import { ShoppingBag } from "lucide-react";
-import { cartAtom } from "../atom/cartAtom";
-import { useAtom } from "jotai";
+// "use client";
 
-export const IconCart = () => {
-  const [cart, setCart] = useAtom(cartAtom);
+// import { Badge } from "@nextui-org/react";
+// import { ShoppingBag } from "lucide-react";
+// import { cartAtom } from "../atom/cartAtom";
+// import { useAtom } from "jotai";
 
-  return (
-    <Badge content={cart.length} color="danger">
-      <ShoppingBag size={24} />
-    </Badge>
-  );
-};
+// export const IconCart = () => {
+//   const [cart, setCart] = useAtom(cartAtom);
+
+//   return (
+//     <Badge content={cart.length} color="danger">
+//       <ShoppingBag size={24} />
+//     </Badge>
+//   );
+// };
