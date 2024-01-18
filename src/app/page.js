@@ -2,6 +2,8 @@
 import { Headerhome } from "@/components/sharedUI/headerhome";
 import { dataFocusVisibleClasses } from "@nextui-org/react";
 import Image from "next/image";
+import  { Dices, Projector, AirVent, CookingPot, Wifi, Bean } from "lucide-react";
+ 
 
 
 
@@ -9,7 +11,7 @@ export default async function Home() {
   return (
     <main className="max-w-5xl m-auto py-8 space-y-10">
       <Headerhome />
-      <section className="text-center w-[700px] m-auto space-y-2">
+      <section className="text-center w-[700px] m-auto space-y-2 pb-1">
         <h1>
           Temukan <span className="text-emerald-600 animate-pulse">Working Space</span> Favoritmu Di Sini...
         </h1>
@@ -20,7 +22,7 @@ export default async function Home() {
     
     
 <section className="py-10 grid grid-cols-3 grid-rows-2 gap-2 p-0 m-auto">
-    <div className="row-span-2 col-span-2 flex max-w-full"><Image  className= "rounded-lg shadow-md" src="/assets/ws1.jpg" width={670} height={420} alt="pic" /></div>
+    <div className="row-span-2 col-span-2 flex max-w-full"><Image className= "rounded-lg shadow-md" src="/assets/ws1.jpg" width={670} height={420} alt="pic" /></div>
     <div > <Image className= "rounded-lg shadow-md" src="/assets/ws2.jpg" width={336} height={275} alt="pic" /></div>
     <div className="col-start-3 row-start-2"><Image  className= "rounded-lg shadow-md" src="/assets/ws3.jpg" width={336} height={275} alt="pic" /></div>
 </section>
@@ -57,7 +59,37 @@ export default async function Home() {
                                     </div>
                                 </div>
                             </div>
-                        </section>
+</section>
+<section className="p-3 border-2 shadow-md border-zince-300  bg-gray-100 rounded-lg">
+<div className="grid grid-cols-3 grid-rows-3 gap-5 p-4">
+    <div className="row-span-3"><h2 className="text-3xl text-black font-bold mb-2">Fasilitas</h2>
+    <p className="text-gray-600">fasilitas apa saja yang ada di sharedesk ? </p></div>
+    <div ><Wifi color="#009688" size={34}/>
+    <h3>Wifi</h3>
+    <p className="text-gray-600">Wifi yang extra kebut ga bakalan buat mood kamu hancur 😊</p>
+    </div>
+    <div ><CookingPot color="#009688" size={34}/>
+    <h3>Pantry</h3>
+    <p className="text-gray-600">Ada pantry yang siap siaga bisa kamu gunakan</p>
+    </div>
+    <div className="col-start-2 row-start-2"><AirVent color="#009688" size={34}/>
+    <h3>Full Ac</h3>
+    <p className="text-gray-600">Ruangan yang full ac tidak akan buat harimu gerah 🥶</p>
+    </div>
+    <div className="col-start-3 row-start-2"><Projector color="#009688" size={34}/>
+    <h3>Projector</h3>
+    <p className="text-gray-600">Presentasi dengan layar yang lebih besar menggunakan projector kami</p>
+    </div>
+    <div className="col-start-2 row-start-3"><Dices color="#009688" size={34}/>
+    <h3>Board Game</h3>
+    <p className="text-gray-600">Bosen ? serukan waktumu dengan bermain board game 🐲</p>
+    </div>
+    <div className="col-start-3 row-start-3"><Bean color="#009688" size={34}/>
+    <h3>Bean Bag</h3>
+    <p className="text-gray-600">Kamu juga bisa relax menggunakan bean bag yang kami sediakan</p>
+    </div>
+</div>
+</section>                            
     </main>
   );
 }
