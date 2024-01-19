@@ -5,7 +5,6 @@ import { useRouter } from "next/navigation";
 import { IconCart } from "../cart/components/IconCart";
 
 export const Header = () => {
-  
   const router = useRouter();
 
   // function queryHandler(e) {
@@ -34,7 +33,7 @@ export const Header = () => {
         <Link href="/login" className="text-lg font-semibold">
           Login
         </Link>
-        <Link href="/cart"><IconCart /></Link>
+        {/* <Link href="/cart"><IconCart /></Link> */}
       </div>
     </header>
   );

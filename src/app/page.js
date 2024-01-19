@@ -1,24 +1,24 @@
 import { Header } from "@/components/sharedUI/header";
-import { apiUrl } from "@/config/apiUrl";
-import { AllProducts } from "@/components/products_listing/allProducts";
-import { dataFocusVisibleClasses } from "@nextui-org/react";
+// import { apiUrl } from "@/config/apiUrl";
+// import { AllProducts } from "@/components/products_listing/allProducts";
+// import { dataFocusVisibleClasses } from "@nextui-org/react";
 
-async function getData(query) {
-  if (!query) {
-    const res = await fetch(`${apiUrl}/products`);
-    const data = await res.json();
+// async function getData(query) {
+//   if (!query) {
+//     const res = await fetch(`${apiUrl}/products`);
+//     const data = await res.json();
 
-    return data;
-  }
+//     return data;
+//   }
 
-  const res = await fetch(`${apiUrl}/products?q=${query}`);
-  const data = await res.json();
-  return data;
-}
+//   const res = await fetch(`${apiUrl}/products?q=${query}`);
+//   const data = await res.json();
+//   return data;
+// }
 
 export default async function Home() {
-  const data = await getData();
-  console.log(data);
+  // const data = await getData();
+  // console.log(data);
   return (
     <main className="max-w-5xl m-auto py-8 space-y-20">
       <Header />
