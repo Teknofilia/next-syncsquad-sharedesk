@@ -16,7 +16,7 @@ export default async function Home() {
           Temukan <span className="text-emerald-600 animate-pulse">Working Space</span> Favoritmu Di Sini...
         </h1>
         <p>
-        Kami menyediakan berbagai tempat dengan lingkungan yang kolaboratif dan inovatif, di mana setiap individu dapat mengekspresikan kreativitas dan keahlian mereka, menciptakan pengalaman kerja yang dinamis dan kreativ.
+        Kami menyediakan berbagai tempat dengan lingkungan yang kolaboratif dan inovatif, di mana setiap individu dapat mengekspresikan kreativitas dan keahlian mereka, menciptakan pengalaman kerja yang dinamis dan kreatif.
                   </p>
       </section>
     
@@ -60,7 +60,7 @@ export default async function Home() {
                                 </div>
                             </div>
 </section>
-<section className="p-3 border-2 shadow-md border-zince-300  bg-gray-100 rounded-lg">
+<section className="p-3 border-2 shadow-md border-zinc-300  bg-gray-100 rounded-lg">
 <div className="grid grid-cols-3 grid-rows-3 gap-5 p-4">
     <div className="row-span-3"><h2 className="text-3xl text-black font-bold mb-2">Fasilitas</h2>
     <p className="text-gray-600">fasilitas apa saja yang ada di sharedesk ? </p></div>
@@ -89,7 +89,45 @@ export default async function Home() {
     <p className="text-gray-600">Kamu juga bisa relax menggunakan bean bag yang kami sediakan</p>
     </div>
 </div>
-</section>                            
+</section>
+<section class="px-4 border-2 shadow-md border-zinc-300  bg-gray-100 rounded-lg p-4">
+  <div class="mx-auto max-w-3xl text-center">
+    <h3 class="mb-6 text-3xl font-bold">Testimoni</h3>
+    <p class="mb-6 pb-2 text-zinc-800 text-xl dark:text-neutral-300 md:mb-12">
+      Apa kata mereka yang sudah coba sharedesk  
+    </p>
+  </div>
+
+  <div class="grid gap-12 text-center md:grid-cols-2">
+
+    <div class="mb-6 md:mb-0">
+      <div class="mb-6 flex justify-center">
+        <img
+          src="https://tecdn.b-cdn.net/img/Photos/Avatars/img%20(2).webp"
+          class="w-24 rounded-full shadow-lg dark:shadow-black/30" />
+      </div>
+      <p class="my-4 text-xl text-neutral-500 dark:text-neutral-300">
+        "Tempat nya nyaman, sejuk cocok buat aku yang sering meeting sama client"
+      </p>
+      <p class="italic">- Anna Watson</p>
+    </div>
+
+   
+    <div class="mb-0">
+      <div class="mb-6 flex justify-center">
+        <img
+          src="https://tecdn.b-cdn.net/img/Photos/Avatars/img%20(9).jpg"
+          class="w-24 rounded-full shadow-lg dark:shadow-black/30" />
+      </div>
+      <p class="my-4 text-xl text-neutral-500 dark:text-neutral-300">
+        "God damn tempatnya bagus untuk remote worker seperti aku"
+      </p>
+      <p class="italic">- Lukker saint feller</p>
+    </div>
+  </div>
+</section>    
+
     </main>
-  );
+    
+    );
 }
