@@ -194,7 +194,7 @@ export default async function Home() {
             <p className="my-4 text-xl text-neutral-500 dark:text-neutral-300">
               "God damn tempatnya bagus untuk remote worker seperti aku"
             </p>
-            <p className="italic">- Lukker saint feller</p>
+            <p className="italic">- Lukker Saint Feller</p>
           </div>
         </div>
       </section>

@@ -2,6 +2,7 @@
 
 import { Button, Input } from "@nextui-org/react";
 import React from "react";
+import Link from "next/link";
 
 export const Register = () => {
   async function handleRegister(event) {
@@ -38,6 +39,12 @@ export const Register = () => {
           <Button color="primary" type="submit" className="w-full">
             Register
           </Button>
+          <h5 className="text-sm">
+            Already have an account?{" "}
+            <Link href="/login" className="text-primary">
+              Login
+            </Link>
+          </h5>
         </div>
       </form>
     </div>
