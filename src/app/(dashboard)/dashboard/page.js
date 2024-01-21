@@ -6,6 +6,7 @@ import prisma from "@/utils/prisma"
 */
 async function getProducts(nameParam) {
 
+<<<<<<< HEAD
   // const dataListProduct = await fetch(`http://localhost:3000/api/products?name=${name}`, {
   //   method: "GET",
   //   next: { revalidate: 0 }
@@ -16,6 +17,9 @@ async function getProducts(nameParam) {
   // return responseDataListProduct.data
 
   const dataListProduct = await prisma.product_Listing.findMany({
+=======
+  const dataListProduct = await prisma.Product_Listing.findMany({
+>>>>>>> 7539001 (feat: tambah halaman review)
     where: {
       name: {
         contains: nameParam || "",
@@ -23,9 +27,6 @@ async function getProducts(nameParam) {
       },
     },
   });
-
-  //const dataListProduct = await prisma.Product_Listing.findMany(name);
-  //console.log(dataListProduct)
 
   return dataListProduct
 
@@ -69,7 +70,6 @@ export default async function DashboardPage({searchParams}) {
                   </a>
                 </div>
               </div>
-
             )
           })
         }
