@@ -3,6 +3,7 @@
 import { Button, Input } from "@nextui-org/react";
 import React from "react";
 import { useRouter } from "next/navigation";
+import Link from "next/link";
 
 export const Login = () => {
   const router = useRouter();
@@ -40,6 +41,12 @@ export const Login = () => {
           <Button type="submit" color="primary" className="w-full">
             Login
           </Button>
+          <h5 className="text-sm">
+            Don't have an account?{" "}
+            <Link href="/register" className="text-primary">
+              Register
+            </Link>
+          </h5>
         </div>
       </form>
     </div>
