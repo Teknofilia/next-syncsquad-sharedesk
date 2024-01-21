@@ -6,15 +6,6 @@ import prisma from "@/utils/prisma"
 */
 async function getProducts(nameParam) {
 
-  // const dataListProduct = await fetch(`http://localhost:3000/api/products?name=${name}`, {
-  //   method: "GET",
-  //   next: { revalidate: 0 }
-  // })
-
-  // const responseDataListProduct = await dataListProduct.json()
-
-  // return responseDataListProduct.data
-
   const dataListProduct = await prisma.Product_Listing.findMany({
     where: {
       name: {
@@ -23,9 +14,6 @@ async function getProducts(nameParam) {
       },
     },
   });
-
-  //const dataListProduct = await prisma.Product_Listing.findMany(name);
-  //console.log(dataListProduct)
 
   return dataListProduct
 
@@ -69,7 +57,6 @@ export default async function DashboardPage({searchParams}) {
                   </a>
                 </div>
               </div>
-
             )
           })
         }

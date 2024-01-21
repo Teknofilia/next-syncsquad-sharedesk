@@ -18,7 +18,6 @@ async function getData(query) {
 
 export default async function Home() {
   const data = await getData();
-  console.log(data);
   return (
     <main className="max-w-5xl m-auto py-8 space-y-20">
       <Header />
