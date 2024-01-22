@@ -24,9 +24,6 @@ async function getProducts(nameParam) {
     },
   });
 
-  //const dataListProduct = await prisma.Product_Listing.findMany(name);
-  //console.log(dataListProduct)
-
   return dataListProduct
 
 }
@@ -69,7 +66,6 @@ export default async function DashboardPage({searchParams}) {
                   </a>
                 </div>
               </div>
-
             )
           })
         }
