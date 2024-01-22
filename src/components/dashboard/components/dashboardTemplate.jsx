@@ -1,8 +1,29 @@
+"use client";
 import React from "react";
 import Link from "next/link";
 import { Activity, Box, Receipt } from "lucide-react";
+import { useRouter } from "next/navigation";
+import { Button } from "@nextui-org/react";
+import Cookies from "js-cookie";
 
 export const DashboardTemplate = ({ children }) => {
+  const router = useRouter();
+
+  async function handleSubmitLogout() {
+    Cookies.remove("token");
+    localStorage.removeItem("token");
+    localStorage.removeItem("userId");
+
+    let valToken = Cookies.get("token");
+
+    if (valToken) {
+      console.error("Error logout!");
+      return;
+    }
+
+    setTimeout(() => router.push("/"), 2000);
+  }
+
   return (
     <main className="flex h-screen">
       <aside className="w-[230px] border-r-2 p-8 flex flex-col justify-between">
@@ -20,7 +41,9 @@ export const DashboardTemplate = ({ children }) => {
             Orders
           </Link>
         </div>
-        <div className="menu">Logout</div>
+        <div className="menu">
+          <Button onClick={handleSubmitLogout}>Logout</Button>
+        </div>
       </aside>
       <section className="w-[calc(100vw-230px)] p-8">
         <div className="max-w-5xl m-auto">{children}</div>

@@ -157,6 +157,7 @@ export default async function Home() {
           />
         </div>
         <div>
+          {" "}
           <Image
             className="rounded-lg shadow-md"
             src="/assets/ws2.jpg"
@@ -286,36 +287,32 @@ export default async function Home() {
           </p>
         </div>
 
-        <div className="grid gap-12 text-center md:grid-cols-2">
-          <div className="mb-6 md:mb-0">
-            <div className="mb-6 flex justify-center">
-              <Image
-                src="/assets/Anna-Watson.webp"
-                className="w-24 rounded-full shadow-lg dark:shadow-black/30"
-                width={100}
-                height={100}
+        <div class="grid gap-12 text-center md:grid-cols-2">
+          <div class="mb-6 md:mb-0">
+            <div class="mb-6 flex justify-center">
+              <img
+                src="https://tecdn.b-cdn.net/img/Photos/Avatars/img%20(2).webp"
+                class="w-24 rounded-full shadow-lg dark:shadow-black/30"
               />
             </div>
-            <p className="my-4 text-xl text-neutral-500 dark:text-neutral-300">
+            <p class="my-4 text-xl text-neutral-500 dark:text-neutral-300">
               "Tempat nya nyaman, sejuk cocok buat aku yang sering meeting sama
               client"
             </p>
-            <p className="italic">- Anna Watson</p>
+            <p class="italic">- Anna Watson</p>
           </div>
 
-          <div className="mb-0">
-            <div className="mb-6 flex justify-center">
-              <Image
-                src="/assets/lukker-saint-feller.jpeg"
-                className="w-24 rounded-full shadow-lg dark:shadow-black/30"
-                width={100}
-                height={100}
+          <div class="mb-0">
+            <div class="mb-6 flex justify-center">
+              <img
+                src="https://tecdn.b-cdn.net/img/Photos/Avatars/img%20(9).jpg"
+                class="w-24 rounded-full shadow-lg dark:shadow-black/30"
               />
             </div>
-            <p className="my-4 text-xl text-neutral-500 dark:text-neutral-300">
+            <p class="my-4 text-xl text-neutral-500 dark:text-neutral-300">
               "God damn tempatnya bagus untuk remote worker seperti aku"
             </p>
-            <p className="italic">- Lukker Saint Feller</p>
+            <p class="italic">- Lukker saint feller</p>
           </div>
         </div>
       </section>
