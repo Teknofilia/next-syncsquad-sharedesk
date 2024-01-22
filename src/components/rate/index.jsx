@@ -1,9 +1,9 @@
 import { HiStar } from 'react-icons/hi';
 import { useState } from 'react';
 
-export default function Componentstar({disabled, star=0,setStar}){
+export default function Componentstar({disabled, star=0, setStar}){
     return(
-        <div className='flex flex-row justify-center w-full'>
+        <div className={disabled ?'flex flex-row justify-center w-full' : 'flex flex-row w-full'}>
             {[...Array(5)].map((v, index) => {
                 return (
                     <div key={index}>

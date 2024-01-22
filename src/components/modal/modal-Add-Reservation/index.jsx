@@ -1,31 +1,21 @@
-import Modal from "react-modal"
 import React, {useState} from "react"
-// import { Button } from "../../../components/Button-Component"
+import Modal from "react-modal"
 import { Button, Input, Textarea } from "@nextui-org/react"
 import { ImCross } from "react-icons/im"
 import { alertError, alertSucces} from "../../../../helper/sweetalert"
-import { CopySlash } from "lucide-react"
-import Componentstar from "../../../components/rate"
+import Select from 'react-select'
+import makeAnimated from 'react-select/animated'
 
-// export default function Addupdatehistory({ isShow, setIsShow, id, refetch, detail }){
-export default function Addupdatehistory({ id, isShow, setIsShow, data }){  
-  const [room, setRoom] = useState(null)
-  const [date, setDate] = useState("")
-  const [star, setStar] = useState([])
-  const [comment, setComment] = useState("")
+export default function Addupdatehistory({ idRoom, isShow, setIsShow }){  
   const [isMobile, setIsMobile] = useState(false)
 
   const submitAddUpdate = async () => {
-    if(star === 0){
-      alertError("Fail", "Rating cannot be empty.");
-      return;
-    }
-
-    if(comment === ""){
-      alertError("Fail", "Comment cannot be empty.");
-      return;
-    }
+    // if(star === 0){
+    //   alertError("Fail", "Rating cannot be empty.");
+    //   return;
+    // }
   }
+
 
   const customStyles = {
     content: {
@@ -60,25 +50,30 @@ export default function Addupdatehistory({ id, isShow, setIsShow, data }){
                   <div className="bg-white   w-full p-10 mt-5">
                     <div className="w-full mb-4">
                       <p className="mb-2">Room :</p>
-                      <Input disabled type="text" value={id?data.room:""} />
+                      <Input disabled type="text" />
                     </div>
 
                     <div className="w-full mb-4">
-                      <p className="mb-2">Reservation Date :</p>
-                      <Input disabled type="text" value={id?data.date:""} />
+                      <p className="mb-2">Date :</p>
+                      <Input type="text" />
+                    </div>
+                    
+                    <div className="w-full mb-4">
+                      <p className="mb-2">Booking Time :</p>
+                      <Select
+                        closeMenuOnSelect={false}
+                        components={animatedComponents}
+                        // defaultValue={[colourOptions[4], colourOptions[5]]}
+                        isMulti
+                        options={colourOptions}
+                      />
                     </div>
 
                     <div className="w-full mb-4">
-                      <p className="mb-2">Rating :</p>
-                      <Componentstar disabled={false} star={id?data.rate : 0} setStart={4}/>
-                    </div>
-
-                    <div className="w-full mb-4">
-                      <p className="mb-2">Comment :</p>
+                      <p className="mb-2">Note :</p>
                       <Textarea
-                        value={id?data.comment:""}
-                        label="Description"
-                        placeholder="Enter your description"
+                        label="Noted"
+                        placeholder="Enter your note"
                         className="w-full"
                       />
                     </div>
