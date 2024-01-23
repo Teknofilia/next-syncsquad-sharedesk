@@ -5,6 +5,7 @@ import { useState, useEffect } from "react"
 import prisma from "@/utils/prisma"
 import dynamic from 'next/dynamic'
 import ModalAddUpdateRoom from '../../components/modal/modal-AddUpdate-History'
+import ModalAddReservasi from '../../components/modal/modal-Add-Reservation'
 
 const Table = dynamic(
   () => import('../../components/table/TableListHistoryComponent'),

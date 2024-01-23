@@ -1,13 +1,78 @@
-import React, {useState} from "react"
+import React, {useState, useEffect} from "react"
 import Modal from "react-modal"
 import { Button, Input, Textarea } from "@nextui-org/react"
 import { ImCross } from "react-icons/im"
 import { alertError, alertSucces} from "../../../../helper/sweetalert"
 import Select from 'react-select'
 import makeAnimated from 'react-select/animated'
+import DatePicker from "react-datepicker"
+import "react-datepicker/dist/react-datepicker.css"
 
-export default function Addupdatehistory({ idRoom, isShow, setIsShow }){  
+const animatedComponents = makeAnimated()
+
+export default function Addupdatereservation({ id, isShow, setIsShow, dataRoom }){
+  const [jamOption, setJamOption] = useState([])
+  //const [dataJam, setDataJam] = useState([])
+  const [jam, setJam] = useState([])
   const [isMobile, setIsMobile] = useState(false)
+  const [startDate, setStartDate] = useState(new Date())
+
+  const dataJam = [{
+    value:1,
+    label:"09.00-10.00",
+  },
+  {
+    value:2,
+    label:"10.00-11.00",
+  },
+  {
+    value:3,
+    label:"11.00-12.00",
+  },
+  {
+    value:4,
+    label:"12.00-13.00",
+  },
+  {
+    value:5,
+    label:"13.00-14.00",
+  },
+  {
+    value:6,
+    label:"14.00-15.00",
+  },
+  {
+    value:7,
+    label:"15.00-16.00",
+  },
+  {
+    value:8,
+    label:"16.00-17.00",
+  },
+  {
+    value:9,
+    label:"17.00-18.00",
+  },
+  {
+    value:10,
+    label:"18.00-19.00",
+  },
+  {
+    value:11,
+    label:"19.00-20.00",
+  },
+  {
+    value:11,
+    label:"20.00-21.00",
+  },
+  {
+    value:11,
+    label:"21.00-22.00",
+  }]
+
+  useEffect(() => {
+    setJamOption(dataJam);
+  }, []);
 
   const submitAddUpdate = async () => {
     // if(star === 0){
@@ -15,7 +80,6 @@ export default function Addupdatehistory({ idRoom, isShow, setIsShow }){
     //   return;
     // }
   }
-
 
   const customStyles = {
     content: {
@@ -47,32 +111,39 @@ export default function Addupdatehistory({ idRoom, isShow, setIsShow }){
             <>
               <div className="p-4">
                 <div className="flex flex-col items-center justify-center">
-                  <div className="bg-white   w-full p-10 mt-5">
+                  <div className="bg-white w-full p-10 mt-5">
                     <div className="w-full mb-4">
                       <p className="mb-2">Room :</p>
-                      <Input disabled type="text" />
+                      <Input type="text" />
                     </div>
 
                     <div className="w-full mb-4">
                       <p className="mb-2">Date :</p>
-                      <Input type="text" />
+                      <DatePicker
+                        showIcon
+                        selected={startDate}
+                        onChange={(date) => setStartDate(date)}
+                      />
                     </div>
                     
                     <div className="w-full mb-4">
                       <p className="mb-2">Booking Time :</p>
                       <Select
+                        placeholder="Choose booking schedule"
+                        value={jam}
                         closeMenuOnSelect={false}
+                        menuPlacement="top"
+                        dir
                         components={animatedComponents}
-                        // defaultValue={[colourOptions[4], colourOptions[5]]}
                         isMulti
-                        options={colourOptions}
+                        onChange={(v) => setJam(v)}
+                        options={dataJam}
                       />
                     </div>
 
                     <div className="w-full mb-4">
                       <p className="mb-2">Note :</p>
                       <Textarea
-                        label="Noted"
                         placeholder="Enter your note"
                         className="w-full"
                       />

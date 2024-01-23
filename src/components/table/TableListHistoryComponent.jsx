@@ -38,6 +38,7 @@ const TableListHistoryComponent = ({data, showModalUpdate}) => {
                         <thead className="">
                             <tr className=" text-white text-left text- ">
                                 <th className="sticky top-0 font-semibold text-center bg-blue-800 text-sm uppercase px-6 py-4"> Room </th>
+                                <th className="sticky top-0 font-semibold text-center bg-blue-800 text-sm uppercase px-6 py-4"> Date </th>
                                 <th className="sticky top-0 font-semibold text-center bg-blue-800 text-sm uppercase px-6 py-4"> Rate </th>
                                 <th className="sticky top-0 font-semibold text-center bg-blue-800 text-sm uppercase px-6 py-4"> Comment </th>
                                 <th className="sticky top-0 font-semibold text-center bg-blue-800 text-sm uppercase px-6 py-4">Action</th>
@@ -71,6 +72,7 @@ const TableListHistoryComponent = ({data, showModalUpdate}) => {
                                 <>
                                     <tr className={`text-gray-900 `}>
                                         <td className="px-6 py-4 text-center uppercase whitespace-pre-line"> {data.room} </td>
+                                        <td className="px-6 py-4 text-center uppercase whitespace-pre-line"> {data.date} </td>
                                         <td className="px-6 py-4 text-center uppercase whitespace-pre-line">
                                             <Componentstar disabled={true} star={data.rate} setStart={(value) => null}/>
                                         </td>

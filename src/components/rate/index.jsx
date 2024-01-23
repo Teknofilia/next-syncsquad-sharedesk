@@ -1,5 +1,4 @@
 import { HiStar } from 'react-icons/hi';
-import { useState } from 'react';
 
 export default function Componentstar({disabled, star=0, setStar}){
     return(

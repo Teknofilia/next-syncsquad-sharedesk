@@ -1,5 +1,5 @@
 import Modal from "react-modal"
-import React, {useState} from "react"
+import React, {useEffect, useState} from "react"
 // import { Button } from "../../../components/Button-Component"
 import { Button, Input, Textarea } from "@nextui-org/react"
 import { ImCross } from "react-icons/im"
@@ -11,9 +11,13 @@ import Componentstar from "../../../components/rate"
 export default function Addupdatehistory({ id, isShow, setIsShow, data }){  
   const [room, setRoom] = useState(null)
   const [date, setDate] = useState("")
-  const [star, setStar] = useState([])
+  const [star, setStar] = useState(0)
   const [comment, setComment] = useState("")
   const [isMobile, setIsMobile] = useState(false)
+
+  useEffect(()=>{
+    setStar(id?data.rate : 0)
+  },[id, data])  
 
   const submitAddUpdate = async () => {
     if(star === 0){
@@ -70,7 +74,7 @@ export default function Addupdatehistory({ id, isShow, setIsShow, data }){
 
                     <div className="w-full mb-4">
                       <p className="mb-2">Rating :</p>
-                      <Componentstar disabled={false} star={id?data.rate : 0} setStart={4}/>
+                      <Componentstar disabled={false} star={star} setStar={setStar}/>
                     </div>
 
                     <div className="w-full mb-4">
