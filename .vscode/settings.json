@@ -1,3 +1,16 @@
 {
+<<<<<<< HEAD
   "editor.tabSize": 2
+=======
+  "editor.tabSize": 2,
+  "editor.fontSize": 12,
+  "editor.tabFocusMode": true,
+  "prettier.useTabs": true,
+  "workbench.editor.highlightModifiedTabs": false,
+  "workbench.editor.scrollToSwitchTabs": false,
+  "workbench.editor.tabActionCloseVisibility": true,
+  "workbench.editor.tabActionUnpinVisibility": true,
+  "terminal.integrated.tabs.enabled": true,
+  "editor.detectIndentation": false
+>>>>>>> f8652c36cbb17ad34ecc261090b05f65d3f84569
 }

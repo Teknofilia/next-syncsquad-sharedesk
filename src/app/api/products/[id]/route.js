@@ -86,17 +86,17 @@ import prisma from "@/utils/prisma";
 //     roomCount:2,
 //     createdAt:"05-01-2023",
 //     updatedAt:"05-01-2023"
-//   }    
+//   }
 // }
 
 export async function GET(request, { params }) {
-  const ids = params.id
+  const ids = params.id;
 
   let product;
 
   try {
     if (query) {
-      product = await prisma.Product_Listing.findMany({
+      product = await prisma.product_Listing.findMany({
         where: {
           id: {
             contains: ids || "",
@@ -105,13 +105,19 @@ export async function GET(request, { params }) {
         },
       });
     } else {
-      product = await prisma.Product_Listing.findMany();
+      product = await prisma.product_Listing.findMany();
     }
 
-    return NextResponse.json({ message: "Product fetched succesfully!", data: allProducts }, { status: 200 });
+    return NextResponse.json(
+      { message: "Product fetched succesfully!", data: allProducts },
+      { status: 200 }
+    );
   } catch (error) {
     console.log(error);
-    return NextResponse.json({ error: "Product fetch failed!" }, { status: 200 });
+    return NextResponse.json(
+      { error: "Product fetch failed!" },
+      { status: 500 }
+    );
   }
 }
 
@@ -120,7 +126,7 @@ export async function GET(request, { params }) {
 
 //   return NextResponse.json(
 //     {
-//       data: data[ids],      
+//       data: data[ids],
 //       message:"Products fetched successfully"
 //     },
 //     {status:200}
