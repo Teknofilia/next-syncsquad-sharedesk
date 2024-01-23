@@ -6,9 +6,6 @@ import prisma from "@/utils/prisma"
 */
 async function getProducts(nameParam) {
 
-<<<<<<< HEAD
-  const dataListProduct = await prisma.Product_Listing.findMany({
-=======
   // const dataListProduct = await fetch(`http://localhost:3000/api/products?name=${name}`, {
   //   method: "GET",
   //   next: { revalidate: 0 }
@@ -19,7 +16,6 @@ async function getProducts(nameParam) {
   // return responseDataListProduct.data
 
   const dataListProduct = await prisma.product_Listing.findMany({
->>>>>>> f8652c36cbb17ad34ecc261090b05f65d3f84569
     where: {
       name: {
         contains: nameParam || "",

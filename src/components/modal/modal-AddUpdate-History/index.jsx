@@ -1,29 +1,4 @@
 import Modal from "react-modal"
-<<<<<<< HEAD
-import React from "react"
-//import { Button } from "../components/Button-Component"
-import { ImCross } from "react-icons/im"
-//import { alertError, alertSuccess } from "../../helper/sweetalert"
-import {Textarea} from "@nextui-org/react"
-
-// export default function Addupdatehistory({ isShow, setIsShow, id, refetch, detail }){
-export default function Addupdatehistory({ isShow, setIsShow }){
-  const [star, setStar] = useState([])
-  const [comment, setComment] = useState("")
-
-  const submitAddUpdate = async () => {
-    // if(star === 0){
-    //   alertError("Fail", "Rating cannot be empty.");
-    //   return;
-    // }
-
-    // if(comment === ""){
-    //   alertError("Fail", "Comment cannot be empty.");
-    //   return;
-    // }
-
-
-=======
 import React, {useEffect, useState} from "react"
 // import { Button } from "../../../components/Button-Component"
 import { Button, Input, Textarea } from "@nextui-org/react"
@@ -67,7 +42,6 @@ export default function Addupdatehistory({ id, isShow, setIsShow, data }){
       height: isMobile ? "100%" : "100%",
       transform: "translate(-50%, -50%)",
     },
->>>>>>> f8652c36cbb17ad34ecc261090b05f65d3f84569
   }
 
   return(
@@ -89,18 +63,6 @@ export default function Addupdatehistory({ id, isShow, setIsShow, data }){
                 <div className="flex flex-col items-center justify-center">
                   <div className="bg-white   w-full p-10 mt-5">
                     <div className="w-full mb-4">
-<<<<<<< HEAD
-                      <p className="mb-2">Rating</p>
-                      <Componentstar disabled={false} star={id ? v.rate : 0} setStart={(value) => null}/>
-                    </div>
-
-                    <div className="w-full mb-4">
-                      <p className="mb-2">Comment</p>
-                      <Textarea
-                        label="Description"
-                        placeholder="Enter your description"
-                        className="max-w-xs"
-=======
                       <p className="mb-2">Room :</p>
                       <Input disabled type="text" value={id?data.room:""} />
                     </div>
@@ -122,21 +84,11 @@ export default function Addupdatehistory({ id, isShow, setIsShow, data }){
                         label="Description"
                         placeholder="Enter your description"
                         className="w-full"
->>>>>>> f8652c36cbb17ad34ecc261090b05f65d3f84569
                       />
                     </div>
                     <div className="mt-10 flex justify-between">
                       <div>
                         <button
-<<<<<<< HEAD
-                          role="button"
-                          onClick={() => submitAddUpdate()}
-                          className="focus:ring-2 focus:ring-offset-2 focus:ring-gray-200 text-sm font-semibold leading-none text-black 
-                          focus:outline-none bg-gray-200 border 
-                          rounded hover:bg-gray-300 py-2 px-4"
-                        >
-                          Save
-=======
                           color="primary"
                           role="button"
                           onClick={() => submitAddUpdate()}
@@ -146,7 +98,6 @@ export default function Addupdatehistory({ id, isShow, setIsShow, data }){
                           focus:ring-blue-300 dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800"
                         >
                           Submit
->>>>>>> f8652c36cbb17ad34ecc261090b05f65d3f84569
                         </button>
                       </div>
                     </div>
