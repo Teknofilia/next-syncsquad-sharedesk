@@ -10,10 +10,7 @@ import {
 } from "lucide-react";
 
 export default async function Home() {
-<<<<<<< HEAD
-  const data = await getData();
-=======
->>>>>>> f8652c36cbb17ad34ecc261090b05f65d3f84569
+  //const data = await getData();
   return (
     <main className="max-w-5xl m-auto py-8 space-y-10">
       <Headerhome />
