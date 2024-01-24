@@ -33,14 +33,14 @@ export default async function DashboardDetailPage({ params }) {
           );
         })}
       </div>
-      <div>
-        <h1>{data.name}</h1>
+      <div className="p-2">
+        <h1 className="text-transform: capitalize">{data.name}</h1>
       </div>
-      <div>
-        <h5>{data.description}</h5>
+      <div className="p-2">
+        <h5 className="font-light text-transform: normal-case">{data.description}</h5>
       </div>
-      <div>
-        <p className="text-xl">{data.guestCount} guests &#183; {data.roomCount} rooms</p>
+      <div className="p-2">
+        <p className="text-lg font-semibold text-zinc-500">{data.guestCount} guests &#183; {data.roomCount} rooms</p>
       </div>
     </div>
   );
