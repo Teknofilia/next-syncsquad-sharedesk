@@ -34,6 +34,8 @@ model Product_Listing {
   featuredImage String
   images String[]
   category String
+  facility String
+  price Int
   guestCount Int
   roomCount Int
   createdAt DateTime @default(now())
@@ -49,9 +51,9 @@ model Product_Listing {
 
 model Reservation {
   id String @id @default(uuid())
-  startDate DateTime
-  endDate DateTime
+  reservationDate DateTime
   totalPrice Int
+  createdBy String
   createdAt DateTime @default(now())
 
   userId String 
@@ -66,7 +68,8 @@ model Reservation {
 model Review {
   id String @id @default(uuid())
   review String
-  rating String
+  rating Int
+  createdAt DateTime @default(now())
 
   userId String 
   user User @relation(fields: [userId], references: [id], onDelete: Cascade)
