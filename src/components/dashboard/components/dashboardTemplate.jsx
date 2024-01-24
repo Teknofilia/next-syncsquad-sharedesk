@@ -26,19 +26,19 @@ export const DashboardTemplate = ({ children }) => {
 
   return (
     <main className="flex h-screen">
-      <aside className="w-[230px] border-r-2 p-8 flex flex-col justify-between">
-        <div>
-          <Link className="menu" href="/dashboard">
-            <Activity size={15} />
-            Dashboard
+      <aside className="w-[230px] border-r-2 p-8 flex flex-col justify-between sticky bg-teal-50">
+        <div className="">
+          <h3 className="items-center text-center text-emerald-500">Sharedesk</h3>
+          <Link className="menu flex items-center font-semibold p-2" href="/dashboard">
+            <Activity size={15}/><p className="ml-2">Dashboard</p>
           </Link>
-          <Link className="menu" href="/dashboard/products">
+          <Link className="menu flex items-center font-semibold p-2" href="/dashboard/products">
             <Box size={15} />
-            Products
+            <p className="ml-2">Products</p>
           </Link>
-          <Link className="menu" href="/dashboard/orders">
+          <Link className="menu flex items-center font-semibold p-2" href="/dashboard/orders">
             <Receipt size={15} />
-            Orders
+            <p className="ml-2">Orders</p>
           </Link>
         </div>
         <div className="menu">

@@ -24,8 +24,8 @@ export const Register = () => {
   return (
     <div className="w-[460px] space-y-8">
       <div>
-        <h3>Register</h3>
-        <p>Please create an account</p>
+        <h3 className="font-semibold text-xl">Register</h3>
+        <p className="font-light text-zinc-500 pt-2">Please create an account</p>
       </div>
       <form onSubmit={handleRegister}>
         <div className="space-y-2">
@@ -39,9 +39,9 @@ export const Register = () => {
           <Button color="primary" type="submit" className="w-full">
             Register
           </Button>
-          <h5 className="text-sm">
-            Already have an account?{" "}
-            <Link href="/login" className="text-primary">
+          <h5 className="text-sm p-1 text-sm font-light">
+            Already have an account ?{" "}
+            <Link href="/login" className="text-primary font-semibold">
               Login
             </Link>
           </h5>
