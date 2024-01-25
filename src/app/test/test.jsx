@@ -13,7 +13,7 @@ const TableListHistoryComponent = ({data, showModalUpdate}) => {
             <div className="min-h-screen py-5">            
                 <div className="flex flex-col h-screen">
                     <div className="flex-grow overflow-auto">
-                    <table   className="relative mx-auto w-full whitespace-nowrap rounded-lg bg-white divide-y divide-gray-300 ">
+                      <table className="relative mx-auto w-full whitespace-nowrap rounded-lg bg-white divide-y divide-gray-300 ">
                             <thead className="">
                                 <tr className=" text-white text-left text- ">
                                     <th className="sticky top-0 font-semibold text-center bg-blue-800 text-sm uppercase px-6 py-4"> Room </th>

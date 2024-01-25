@@ -5,6 +5,7 @@ import React from "react";
 import { useRouter } from "next/navigation";
 import Link from "next/link";
 import { useState } from "react";
+import toast from "react-hot-toast";
 
 export const Login = () => {
 	const router = useRouter();
@@ -22,13 +23,16 @@ export const Login = () => {
 			body: JSON.stringify({ email, password }),
 		});
 		const { message, errorMessage } = await res.json();
+    console.log(res.status);
+		// console.log(message);
 
-		if (errorMessage) {
-			console.log(errorMessage);
+		if (res.status !== 200) {
+			setLoading(false);
+			toast.error(`${errorMessage}`);
 			return;
 		}
 
-		console.log(message);
+		toast.success(`${message}`);
 		setLoading(false);
 
 		router.push("/dashboard");
@@ -38,7 +42,9 @@ export const Login = () => {
 		<div className="w-[360px] space-y-8">
 			<div>
 				<h3 className="font-semibold text-xl">Login</h3>
-				<p className="font-light text-zinc-500 pt-2">Welcome back, grab the best deal of your working space here</p>
+				<p className="font-light text-zinc-500 pt-2">
+					Welcome back, grab the best deal of your working space here
+				</p>
 			</div>
 			<form onSubmit={handleLogin}>
 				<div className="space-y-3">
