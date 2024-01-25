@@ -12,27 +12,37 @@ export const Login = () => {
 	const [loading, setLoading] = useState(false);
 
 	async function handleLogin(event) {
-		setLoading(true);
+		setLoading(true)
 		event.preventDefault(); // prevent auto refresh
 
-		const email = event.target.email.value;
-		const password = event.target.password.value;
+		const email = event.target.email.value
+		const password = event.target.password.value
 
 		const res = await fetch("/api/users/login", {
 			method: "POST",
 			body: JSON.stringify({ email, password }),
-		});
-		const { message, errorMessage } = await res.json();
-    console.log(res.status);
-		// console.log(message);
+		})
 
-		if (res.status !== 200) {
-			setLoading(false);
-			toast.error(`${errorMessage}`);
-			return;
-		}
+    console.log(res.json)
 
-		toast.success(`${message}`);
+    if (res.status === 401){
+      toast.error("gagal")
+      return
+    }
+
+    toast.success("sukses")
+
+		// const { message, errorMessage } = await res.json();
+
+    // console.log({message, errorMessage})
+
+		// if (errorMessage !== null || errorMessage !== undefined) {
+		// 	setLoading(false);
+		// 	toast.error(`${errorMessage}`);
+		// 	return;
+		// }
+
+		// toast.success(`${message}`);
 		setLoading(false);
 
 		router.push("/dashboard");

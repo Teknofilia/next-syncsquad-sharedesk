@@ -6,7 +6,7 @@ export default async function middleware(req) {
   const encodedJwtSecret = new TextEncoder().encode(jwtSecret);
   const token = req.cookies.get("token")?.value;
 
-  console.log(token, "middleware matcher dashboard");
+  // console.log(token, "middleware matcher dashboard");
   if (!token) {
     return NextResponse.redirect(new URL("/login", req.url));
   }
