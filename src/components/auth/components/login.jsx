@@ -5,6 +5,7 @@ import React from "react";
 import { useRouter } from "next/navigation";
 import Link from "next/link";
 import { useState } from "react";
+import toast from "react-hot-toast";
 
 export const Login = () => {
 	const router = useRouter();
@@ -23,8 +24,9 @@ export const Login = () => {
 		});
 		const { message, errorMessage } = await res.json();
 
-		if (errorMessage) {
-			console.log(errorMessage);
+		if (res.status !== 200) {
+			setLoading(false);
+			toast.error(`${errorMessage}`);
 			return;
 		}
 
