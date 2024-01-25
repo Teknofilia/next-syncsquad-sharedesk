@@ -15,14 +15,7 @@ export default function RootLayout({ children }) {
 	return (
 		<html lang="en">
 			<body className={fontSans.className}>
-				<Toaster
-					toastOptions={{
-						style: {
-							background: "51 65 85",
-							color: "#fff",
-						},
-					}}
-				/>
+				<Toaster />
 				<Provider>{children}</Provider>
 			</body>
 		</html>

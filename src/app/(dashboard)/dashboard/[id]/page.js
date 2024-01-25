@@ -1,6 +1,7 @@
+"use client"
+
 import prisma from "@/utils/prisma"
-import React, {useState} from "react"
-import ModalAddReservasi from '../../../../components/modal/modal-Add-Reservation'
+//import ModalAddReservasi from '../../../../components/modal/modal-Add-Reservation'
 
 async function getProductDetail(idParam) {
   const dataListProduct = await prisma.product_Listing.findMany({
@@ -17,16 +18,16 @@ async function getProductDetail(idParam) {
 
 export default async function DashboardDetailPage({ params }) {
   const [data] = await getProductDetail(params.id)
-  const [isShow, setIsShow] = useState(false)
-  const [detail, setDetail] = useState(null)
-  const [id, setId] = useState(false)
+  // const [isShow, setIsShow] = useState(false)
+  // const [detail, setDetail] = useState(null)
+  // const [id, setId] = useState(false)
 
-  /** @param {string} id */
-  const showModalUpdate = (id, data) => {
-    setId(id)
-    setDetail(data)
-    setIsShow(true)
-  }
+  // /** @param {string} id */
+  // const showModalUpdate = (id, data) => {
+  //   setId(id)
+  //   setDetail(data)
+  //   setIsShow(true)
+  // }
 
   // useEffect(()=>{
   //   if(!isShow) {
@@ -37,15 +38,16 @@ export default async function DashboardDetailPage({ params }) {
 
   return (
     <>
-      <ModalAddReservasi id={id} isShow={isShow} setIsShow={setIsShow} data={detail} />
+      {/* <ModalAddReservasi id={id} isShow={isShow} setIsShow={setIsShow} data={detail} /> */}
       <div className="w-full h-full">
         <div className="flex flex-wrap justify-center space-x-4 mb-6">
           {data.images.map((value, index) => {
+            const pathImage = `https://sharedesk.s3.ap-southeast-1.amazonaws.com/products/${data.id}/${value}`
             return (
               <div key={index} className="mb-4">
                 <img
                   className="rounded-lg"
-                  src={value}
+                  src={pathImage}
                   alt=""
                   height={400}
                   width={450}
