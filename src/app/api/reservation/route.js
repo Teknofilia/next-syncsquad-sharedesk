@@ -4,9 +4,9 @@ import prisma from "@/utils/prisma";
 export async function POST(req) {
   const formData = await req.formData();
   // const user = formData.get("user");
-  const startDate = formData.get("startDate");
-  const endDate = formData.get("endDate");
+  const reservationDate = formData.get("reservationDate");
   const totalPrice = formData.getAll("totalPrice");
+  const createdBy = formData.getAll("createdBy");
 
   const userId = formData.get("userId");
   const product_listingId = formData.get("product_listingId");
