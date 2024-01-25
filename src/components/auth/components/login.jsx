@@ -37,11 +37,11 @@ export const Login = () => {
 	return (
 		<div className="w-[360px] space-y-8">
 			<div>
-				<h3>Login</h3>
-				<p>Welcome back!</p>
+				<h3 className="font-semibold text-xl">Login</h3>
+				<p className="font-light text-zinc-500 pt-2">Welcome back, grab the best deal of your working space here</p>
 			</div>
 			<form onSubmit={handleLogin}>
-				<div className="space-y-2">
+				<div className="space-y-3">
 					<Input name="email" placeholder="Email" />
 					<Input name="password" placeholder="Password" type="password" />
 					<Button
@@ -74,9 +74,9 @@ export const Login = () => {
 					>
 						Login
 					</Button>
-					<h5 className="text-sm">
+					<h5 className="p-1 text-sm font-light">
 						Don't have an account?{" "}
-						<Link href="/register" className="text-primary">
+						<Link href="/register" className="text-primary font-semibold">
 							Register
 						</Link>
 					</h5>
