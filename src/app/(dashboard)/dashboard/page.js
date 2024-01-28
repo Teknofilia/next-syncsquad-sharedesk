@@ -40,8 +40,8 @@ export default async function DashboardPage({ searchParams }) {
 			</div>
 			<div className=" grid gap-4 grid-cols-3 mb-10">
 				{data.map((value, index) => {
-					// const value1 = slugify(value.featuredImage, { replacement: "+" });
-					const pathImage = `${imageUrl}/${value.id}/${value.featuredImage}`;
+					const value1 = slugify(value.featuredImage, { replacement: "+" });
+					const pathImage = `${imageUrl}/${value.id}/${value1}`;
 					// console.log(value.featuredImage);
 					// console.log(value.id);
 					return (
