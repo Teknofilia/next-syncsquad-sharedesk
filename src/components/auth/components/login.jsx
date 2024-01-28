@@ -12,29 +12,29 @@ export const Login = () => {
 	const [loading, setLoading] = useState(false);
 
 	async function handleLogin(event) {
-		setLoading(true)
+		setLoading(true);
 		event.preventDefault(); // prevent auto refresh
 
-		const email = event.target.email.value
-		const password = event.target.password.value
+		const email = event.target.email.value;
+		const password = event.target.password.value;
 
 		const res = await fetch("/api/users/login", {
 			method: "POST",
 			body: JSON.stringify({ email, password }),
-		})
+		});
 
-    console.log(res.json)
+		console.log(res.json);
 
-    if (res.status === 401){
-      toast.error("gagal")
-      return
-    }
+		if (res.status === 401) {
+			toast.error("Login failed");
+			return;
+		}
 
-    toast.success("sukses")
+		toast.success("Login Successful");
 
 		// const { message, errorMessage } = await res.json();
 
-    // console.log({message, errorMessage})
+		// console.log({message, errorMessage})
 
 		// if (errorMessage !== null || errorMessage !== undefined) {
 		// 	setLoading(false);

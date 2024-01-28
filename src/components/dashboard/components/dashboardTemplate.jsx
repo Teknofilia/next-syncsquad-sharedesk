@@ -12,7 +12,7 @@ export const DashboardTemplate = ({ children }) => {
 	const [loading, setLoading] = useState(false);
 
 	async function handleSubmitLogout() {
-		setLoading(true);
+		setLoading(false);
 
 		Cookies.remove("token");
 		localStorage.removeItem("token");
@@ -24,32 +24,44 @@ export const DashboardTemplate = ({ children }) => {
 			console.error("Error logout!");
 			return;
 		}
-		setLoading(false);
+		setLoading(true);
 
 		setTimeout(() => router.push("/"), 2000);
 	}
 
 	return (
-    <main className="flex h-screen">
-      <aside className="w-[230px] border-r-2 p-8 flex flex-col justify-between sticky bg-teal-50">
-        <div className="">
-          <h3 className="items-center text-center text-emerald-500">Sharedesk</h3>
-          <Link className="menu flex items-center font-semibold p-2" href="/dashboard">
-            <Activity size={15}/><p className="ml-2">Dashboard</p>
-          </Link>
-          <Link className="menu flex items-center font-semibold p-2" href="/dashboard/products">
-            <Box size={15} />
-            <p className="ml-2">Products</p>
-          </Link>
-          <Link className="menu flex items-center font-semibold p-2" href="/dashboard/orders">
-            <Receipt size={15} />
-            <p className="ml-2">Orders</p>
-          </Link>
-        </div>
-        <div className="menu">
+		<main className="flex h-screen">
+			<aside className="w-[230px] border-r-2 p-8 flex flex-col justify-between sticky bg-teal-50">
+				<div className="">
+					<h3 className="items-center text-center text-emerald-500">
+						Sharedesk
+					</h3>
+					<Link
+						className="menu flex items-center font-semibold p-2"
+						href="/dashboard"
+					>
+						<Activity size={15} />
+						<p className="ml-2">Dashboard</p>
+					</Link>
+					<Link
+						className="menu flex items-center font-semibold p-2"
+						href="/dashboard/products"
+					>
+						<Box size={15} />
+						<p className="ml-2">Products</p>
+					</Link>
+					<Link
+						className="menu flex items-center font-semibold p-2"
+						href="/dashboard/orders"
+					>
+						<Receipt size={15} />
+						<p className="ml-2">Orders</p>
+					</Link>
+				</div>
+				<div className="menu">
 					<Button
 						onClick={handleSubmitLogout}
-						color="warning"
+						color="danger"
 						className="w-full"
 						isLoading={loading}
 						spinner={

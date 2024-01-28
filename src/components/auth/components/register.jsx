@@ -4,6 +4,7 @@ import { Button, Input } from "@nextui-org/react";
 import React from "react";
 import Link from "next/link";
 import { useState } from "react";
+import toast from "react-hot-toast";
 
 export const Register = () => {
 	const [loading, setLoading] = useState(false);
@@ -24,14 +25,23 @@ export const Register = () => {
 		});
 		const data = await res.json();
 		console.log(data);
+
+		if (res.status === 401) {
+			toast.error("Register failed");
+			return;
+		}
+
+		toast.success("Register Successful");
 		setLoading(false);
 	}
 
 	return (
 		<div className="w-[460px] space-y-8">
 			<div>
-				<h3  className="font-semibold text-xl">Register</h3>
-				<p className="font-light text-zinc-500 pt-2">Please create an account</p>
+				<h3 className="font-semibold text-xl">Register</h3>
+				<p className="font-light text-zinc-500 pt-2">
+					Please create an account
+				</p>
 			</div>
 			<form onSubmit={handleRegister}>
 				<div className="space-y-2">
