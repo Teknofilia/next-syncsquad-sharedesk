@@ -1,108 +1,92 @@
-// This is your Prisma schema file,
-// learn more about it in the docs: https://pris.ly/d/prisma-schema
-
 generator client {
   provider = "prisma-client-js"
 }
 
-// prisma/schema.prisma
 datasource db {
   provider  = "postgresql"
-  url  	    = env("DATABASE_URL")
+  url       = env("DATABASE_URL")
   directUrl = env("DIRECT_URL")
 }
 
 model User {
-  id String @id @default(uuid())
-  firstName String
-  lastName String
-  email String @unique
-  username String 
-  password String
-  createdAt DateTime @default(now())
-  updatedAt DateTime @updatedAt
-  products Product_Listing[]
+  id           String            @id @default(uuid())
+  firstName    String
+  lastName     String
+  email        String            @unique
+  username     String
+  password     String
+  createdAt    DateTime          @default(now())
+  updatedAt    DateTime          @updatedAt
+  products     Product_Listing[]
   reservations Reservation[]
-  reviews Review[]
+  reviews      Review[]
 }
 
 model Product_Listing {
-  id String @id @default(uuid())
-  name String
-  slug String @unique
-  description String
-  featuredImage String
-  images String[]
-  category String
-  facility String
-  price Int
-  guestCount Int
-  roomCount Int
-  createdAt DateTime @default(now())
-  updatedAt DateTime @updatedAt
-
-  userId String
-  user User @relation(fields: [userId], references: [id])
-  
-  reservation Reservation[]
-  review Review[]
+  id             String           @id @default(uuid())
+  name           String
+  slug           String           @unique
+  description    String
+  featuredImage  String
+  images         String[]
+  category       String
+  facility       String
+  price          Int
+  guestCount     Int
+  roomCount      Int
+  createdAt      DateTime         @default(now())
+  updatedAt      DateTime         @updatedAt
+  userId         String
   product_detail Product_Detail[]
+  user           User             @relation(fields: [userId], references: [id])
+  reservation    Reservation[]
+  review         Review[]
 }
 
 model Reservation {
-  id String @id @default(uuid())
-  reservationDate DateTime
-  totalPrice Int
-  createdBy String
-  createdAt DateTime @default(now())
-
-  userId String 
-  user User @relation(fields: [userId], references: [id], onDelete: Cascade)
-
-  product_listingId String
-  product_listing Product_Listing @relation(fields: [product_listingId], references: [id], onDelete: Cascade)
-
+  id                 String               @id @default(uuid())
+  reservationDate    DateTime
+  totalPrice         Int
+  createdBy          String
+  createdAt          DateTime             @default(now())
+  userId             String
+  product_listingId  String
+  product_listing    Product_Listing      @relation(fields: [product_listingId], references: [id], onDelete: Cascade)
+  user               User                 @relation(fields: [userId], references: [id], onDelete: Cascade)
   reservation_detail Reservation_Detail[]
 }
 
 model Review {
-  id String @id @default(uuid())
-  review String
-  rating Int
-  createdAt DateTime @default(now())
-
-  userId String 
-  user User @relation(fields: [userId], references: [id], onDelete: Cascade)
-
+  id                String          @id @default(uuid())
+  review            String
+  userId            String
   product_listingId String
-  product_listing Product_Listing @relation(fields: [product_listingId], references: [id], onDelete: Cascade)
+  createdAt         DateTime        @default(now())
+  rating            Int
+  product_listing   Product_Listing @relation(fields: [product_listingId], references: [id], onDelete: Cascade)
+  user              User            @relation(fields: [userId], references: [id], onDelete: Cascade)
 }
 
 model Master_Jam {
-  id String @id @default(uuid())
-  description String
-  isActive Boolean
-
-  products_detail Product_Detail[]
+  id                  String               @id @default(uuid())
+  description         String
+  isActive            Boolean
+  products_detail     Product_Detail[]
   reservations_detail Reservation_Detail[]
 }
+
 model Product_Detail {
-  id String @id @default(uuid())
-
+  id                String          @id @default(uuid())
   product_listingId String
-  product_listing Product_Listing @relation(fields: [product_listingId], references: [id], onDelete: Cascade)
-
-  jamId String
-  jam Master_Jam @relation(fields: [jamId], references: [id], onDelete: Cascade)
-
+  jamId             String
+  jam               Master_Jam      @relation(fields: [jamId], references: [id], onDelete: Cascade)
+  product_listing   Product_Listing @relation(fields: [product_listingId], references: [id], onDelete: Cascade)
 }
 
 model Reservation_Detail {
-  id String @id @default(uuid())
-
+  id            String      @id @default(uuid())
   reservationId String
-  reservation Reservation @relation(fields: [reservationId], references: [id], onDelete: Cascade)
-
-  jamId String
-  jam Master_Jam @relation(fields: [jamId], references: [id], onDelete: Cascade)
+  jamId         String
+  jam           Master_Jam  @relation(fields: [jamId], references: [id], onDelete: Cascade)
+  reservation   Reservation @relation(fields: [reservationId], references: [id], onDelete: Cascade)
 }
