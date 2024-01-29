@@ -29,9 +29,7 @@ async function getProducts(nameParam) {
 }
 
 export default async function DashboardPage({searchParams}) {  
-
   const { name } = searchParams
-
   const data = await getProducts(name)
 
   return (
@@ -42,12 +40,12 @@ export default async function DashboardPage({searchParams}) {
       <div className=" grid gap-4 grid-cols-3 mb-10">
         {
           data?.map((value, index) => {
-
+            const pathImage = `https://sharedesk.s3.ap-southeast-1.amazonaws.com/products/${value.id}/${value.featuredImage}`
+            
             return (
-
               <div key={index} className="max-w-sm bg-white border border-gray-200 rounded-lg shadow dark:bg-gray-800 dark:border-gray-700">
                 <a href={`/dashboard/${value.id}`}>
-                  <img className="rounded-t-lg" src={value.featuredImage} alt="" />
+                  <img className="rounded-t-lg" src={pathImage} alt="" />
                 </a>
                 <div className="p-5">
                   <a href={`/dashboard/${value.id}`}>

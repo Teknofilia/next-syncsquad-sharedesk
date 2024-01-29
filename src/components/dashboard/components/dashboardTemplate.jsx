@@ -45,6 +45,10 @@ export const DashboardTemplate = ({ children }) => {
             <Receipt size={15} />
             <p className="ml-2">Orders</p>
           </Link>
+          <Link className="menu flex items-center font-semibold p-2" href="/history">
+            <Receipt size={15} />
+            <p className="ml-2">History</p>
+          </Link>
         </div>
         <div className="menu">
 					<Button

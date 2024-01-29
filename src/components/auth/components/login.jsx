@@ -23,8 +23,6 @@ export const Login = () => {
 			body: JSON.stringify({ email, password }),
 		})
 
-    console.log(res.json)
-
     if (res.status === 401){
       toast.error("gagal")
       return

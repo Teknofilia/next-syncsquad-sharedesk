@@ -1,3 +1,5 @@
+
+import prisma from "@/utils/prisma"
 import React, {useState, useEffect} from "react"
 import Modal from "react-modal"
 import { Button, Input, Textarea } from "@nextui-org/react"
@@ -7,6 +9,7 @@ import Select from 'react-select'
 import makeAnimated from 'react-select/animated'
 import DatePicker from "react-datepicker"
 import "react-datepicker/dist/react-datepicker.css"
+import { dataToSelect } from "../../../../helper/dataprocess"
 
 const animatedComponents = makeAnimated()
 
@@ -16,63 +19,26 @@ export default function Addupdatereservation({ id, isShow, setIsShow, dataRoom }
   const [jam, setJam] = useState([])
   const [isMobile, setIsMobile] = useState(false)
   const [startDate, setStartDate] = useState(new Date())
-
-  const dataJam = [{
-    value:1,
-    label:"09.00-10.00",
-  },
-  {
-    value:2,
-    label:"10.00-11.00",
-  },
-  {
-    value:3,
-    label:"11.00-12.00",
-  },
-  {
-    value:4,
-    label:"12.00-13.00",
-  },
-  {
-    value:5,
-    label:"13.00-14.00",
-  },
-  {
-    value:6,
-    label:"14.00-15.00",
-  },
-  {
-    value:7,
-    label:"15.00-16.00",
-  },
-  {
-    value:8,
-    label:"16.00-17.00",
-  },
-  {
-    value:9,
-    label:"17.00-18.00",
-  },
-  {
-    value:10,
-    label:"18.00-19.00",
-  },
-  {
-    value:11,
-    label:"19.00-20.00",
-  },
-  {
-    value:11,
-    label:"20.00-21.00",
-  },
-  {
-    value:11,
-    label:"21.00-22.00",
-  }]
-
+  
   useEffect(() => {
-    setJamOption(dataJam);
-  }, []);
+    getHoursSelect();
+  }, [])
+
+  const getHoursSelect = async () => {
+    const dataListHours = await fetch("http://localhost:3000/api/hours", {
+    method: "GET"
+  })
+
+  const responseDataHours = await dataListHours.json()
+
+  let resDataToSelect = dataToSelect({
+      data: responseDataHours?.data,
+      label: "description",
+      value: "id",
+    });
+
+    setJamOption(resDataToSelect)
+  }
 
   const submitAddUpdate = async () => {
     // if(star === 0){
@@ -137,7 +103,7 @@ export default function Addupdatereservation({ id, isShow, setIsShow, dataRoom }
                         components={animatedComponents}
                         isMulti
                         onChange={(v) => setJam(v)}
-                        options={dataJam}
+                        options={jamOption}
                       />
                     </div>
 
