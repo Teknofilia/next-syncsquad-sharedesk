@@ -2,40 +2,27 @@
 
 import InputSearchComponent from "./component/searchHistory"
 import { useState, useEffect } from "react"
-import prisma from "@/utils/prisma"
+import { actionGetDataReview } from "./action"
 import dynamic from 'next/dynamic'
 import ModalAddUpdateRoom from '../../components/modal/modal-AddUpdate-History'
-import ModalAddReservasi from '../../components/modal/modal-Add-Reservation'
 
 const Table = dynamic(
   () => import('../../components/table/TableListHistoryComponent'),
   { ssr: false }
 )
 
-/** 
- * @param {string} name  
-*/
-// async function getHistory(nameParam) {
-
-//   const dataListHistory = await prisma.Product_Listing.findMany({
-//     where: {
-//       name: {
-//         contains: nameParam || "",
-//         mode: "insensitive",
-//       },
-//     },
-//   });
-
-//   return dataListHistory
-
-// }
+async function getDataReview() {
+  const data = await actionGetDataReview()
+  return data
+}
 
 export default function HistoryPage({searchParams}) {
   const [isShow, setIsShow] = useState(false)
   const [detail, setDetail] = useState(null)
   const [id, setId] = useState(false)
   const { name } = searchParams
-  //const data = await getHistory(name)
+  //const data = getHistory(name)
+  const dataReview = getDataReview()
 
   /** @param {string} id */
   const showModalUpdate = (id, data) => {
@@ -64,7 +51,7 @@ export default function HistoryPage({searchParams}) {
         </div>
         <div>
           {/* <Table data={data} showModalUpdate={showModalUpdate}/> */}
-          <Table showModalUpdate={showModalUpdate}/>
+          <Table data = {[]} showModalUpdate={showModalUpdate}/>
         </div>
       </div>
     </>

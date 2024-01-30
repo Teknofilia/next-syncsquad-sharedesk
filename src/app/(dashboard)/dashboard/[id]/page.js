@@ -1,58 +1,51 @@
 "use client";
 
+import React, {useEffect, useState} from 'react'
 import { imageUrl } from "@/config/apiUrl";
-import prisma from "@/utils/prisma";
 import slugify from "slugify";
+import ModalAddReservasi from '../../../../components/modal/modal-Add-Reservation'
+import { acitonGetProductDetail } from "./action";
 
-//import ModalAddReservasi from '../../../../components/modal/modal-Add-Reservation'
+export default function DashboardDetailPage({ params }) {
 
-async function getProductDetail(idParam) {
-	const dataListProduct = await prisma.product_Listing.findMany({
-		where: {
-			id: {
-				contains: idParam || "",
-				mode: "insensitive",
-			},
-		},
-	});
+  const [data, setData] = useState({
+    images:[]
+  })
 
-	return dataListProduct;
-}
+	const [isShow, setIsShow] = useState(false)
+	const [detail, setDetail] = useState({})
+	const [id, setId] = useState(false)
 
-export default async function DashboardDetailPage({ params }) {
-	const [data] = await getProductDetail(params.id);
-	// const [isShow, setIsShow] = useState(false)
-	// const [detail, setDetail] = useState(null)
-	// const [id, setId] = useState(false)
+  useEffect(()=>{
+    acitonGetProductDetail(params.id).then((responseGet)=>{
+      setData(responseGet[0])
+      setDetail(responseGet[0])
+    });
+  },[])
 
-	// /** @param {string} id */
-	// const showModalUpdate = (id, data) => {
-	//   setId(id)
-	//   setDetail(data)
-	//   setIsShow(true)
-	// }
+	/** @param {string} id */
+	const showModalUpdate = (id, detail) => {
+	  setId(id)
+	  setDetail(detail)
+	  setIsShow(true)
+	}
 
-	// useEffect(()=>{
-	//   if(!isShow) {
-	//     setId("")
-	//     setDetail(null)
-	//   }
-	// },[isShow])
+	useEffect(()=>{
+	  if(!isShow) {
+	    setId("")
+	    setDetail(null)
+	  }
+	},[isShow])
 
 	return (
 		<>
-			{/* <ModalAddReservasi id={id} isShow={isShow} setIsShow={setIsShow} data={detail} /> */}
+			<ModalAddReservasi id={id} isShow={isShow} setIsShow={setIsShow} dataRoom={data} />
 			<div className="w-full h-full">
 				<div className="flex flex-wrap justify-center space-x-4 mb-6">
-					{data.images.map((value, index) => {
-						// console.log(value);
-						// console.log(index);
-						// console.log(data.userId);
-						const value1 = slugify(value, { replacement: "+" });
+					{data?.images.map((value, index) => {
+						const value1 = slugify(value, { replacement: "+" })
+						const pathImage = `${imageUrl}/${data.id}/${value1}`
 
-						// console.log(value1);
-
-						const pathImage = `${imageUrl}/${data.id}/${value1}`;
 						return (
 							<div key={index} className="mb-4">
 								<img
@@ -83,13 +76,13 @@ export default async function DashboardDetailPage({ params }) {
 					<button
 						color="primary"
 						role="button"
-						onClick={() => showModalUpdate(data.id, data)}
+						onClick={() => showModalUpdate(data.id, detail)}
 						className="
             focus:ring-offset-2 leading-none text-white font-medium rounded-lg text-sm px-4 py-2
             border bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none 
             focus:ring-blue-300 dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800"
 					>
-						Submit
+						Book Now!
 					</button>
 				</div>
 			</div>
