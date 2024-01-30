@@ -43,7 +43,7 @@ export const DashboardTemplate = ({ children }) => {
 						<Activity size={15} />
 						<p className="ml-2">Dashboard</p>
 					</Link>
-					<Link
+					{/* <Link
 						className="menu flex items-center font-semibold p-2"
 						href="/dashboard/products"
 					>
@@ -56,7 +56,7 @@ export const DashboardTemplate = ({ children }) => {
 					>
 						<Receipt size={15} />
 						<p className="ml-2">Orders</p>
-					</Link>
+					</Link> */}
 					<Link
 						className="menu flex items-center font-semibold p-2"
 						href="/history"
