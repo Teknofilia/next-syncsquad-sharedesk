@@ -48,7 +48,7 @@ export default function Addupdatereservation({ id, isShow, setIsShow, dataRoom }
       alertError("Fail", "Date cannot be empty.");
       return;
     }
-    if(jam === ''){
+    if(jam.length === 0){
       alertError("Fail", "Booking time cannot be empty.");
       return;
     }
