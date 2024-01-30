@@ -1,6 +1,5 @@
 "use client"
 
-import prisma from "@/utils/prisma"
 import React, {useState, useEffect} from "react"
 import Modal from "react-modal"
 import { Button, Input, Textarea } from "@nextui-org/react"
@@ -11,6 +10,7 @@ import makeAnimated from 'react-select/animated'
 import DatePicker from "react-datepicker"
 import "react-datepicker/dist/react-datepicker.css"
 import { dataToSelect } from "../../../../helper/dataprocess"
+import { actionSaveReservation, actionSaveReservationDetail } from "./action"
 
 const animatedComponents = makeAnimated()
 
@@ -48,10 +48,33 @@ export default function Addupdatereservation({ id, isShow, setIsShow, dataRoom }
       alertError("Fail", "Date cannot be empty.");
       return;
     }
-    if(jam === ''){
+    if(jam.length === 0){
       alertError("Fail", "Booking time cannot be empty.");
       return;
     }
+
+    const responseSave = await actionSaveReservation({
+      reservationDate: startDate,
+      createdBy: "Reza",
+      totalPrice: (jam.length * dataRoom?.price),
+      userId: dataRoom?.userId,
+      product_listingId: dataRoom?.id,
+    })
+
+    if (!responseSave.status){
+      toast.error("Saving failed, please try again.")
+    }    
+
+    let requetReservationDetail = []
+    for (const item of jam) {          
+      requetReservationDetail.push({
+        jamId: item.value,
+        reservationId: responseSave.data.id
+      })
+    }    
+
+    const responseSaveDetail = await actionSaveReservationDetail(requetReservationDetail)
+    toast.success("Your data was saved.")
   }
 
   const customStyles = {

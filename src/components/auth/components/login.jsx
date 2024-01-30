@@ -21,9 +21,7 @@ export const Login = () => {
 		const res = await fetch("/api/users/login", {
 			method: "POST",
 			body: JSON.stringify({ email, password }),
-		});
-
-		console.log(res.json);
+		})
 
 		if (res.status === 401) {
 			toast.error("Login failed");
