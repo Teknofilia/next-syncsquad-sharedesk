@@ -1,3 +1,4 @@
+"use client"
 
 import prisma from "@/utils/prisma"
 import React, {useState, useEffect} from "react"
@@ -15,10 +16,12 @@ const animatedComponents = makeAnimated()
 
 export default function Addupdatereservation({ id, isShow, setIsShow, dataRoom }){
   const [jamOption, setJamOption] = useState([])
-  //const [dataJam, setDataJam] = useState([])
   const [jam, setJam] = useState([])
   const [isMobile, setIsMobile] = useState(false)
   const [startDate, setStartDate] = useState(new Date())
+
+  useEffect(()=>{
+  },[dataRoom])
   
   useEffect(() => {
     getHoursSelect();
@@ -41,10 +44,14 @@ export default function Addupdatereservation({ id, isShow, setIsShow, dataRoom }
   }
 
   const submitAddUpdate = async () => {
-    // if(star === 0){
-    //   alertError("Fail", "Rating cannot be empty.");
-    //   return;
-    // }
+    if(startDate === ''){
+      alertError("Fail", "Date cannot be empty.");
+      return;
+    }
+    if(jam === ''){
+      alertError("Fail", "Booking time cannot be empty.");
+      return;
+    }
   }
 
   const customStyles = {
@@ -80,7 +87,10 @@ export default function Addupdatereservation({ id, isShow, setIsShow, dataRoom }
                   <div className="bg-white w-full p-10 mt-5">
                     <div className="w-full mb-4">
                       <p className="mb-2">Room :</p>
-                      <Input type="text" />
+                      <Input 
+                        value={dataRoom.name}
+                        type="text" 
+                      />
                     </div>
 
                     <div className="w-full mb-4">

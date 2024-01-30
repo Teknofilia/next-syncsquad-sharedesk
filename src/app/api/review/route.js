@@ -9,7 +9,7 @@ export async function POST(req) {
 
 	const userId = formData.get("userId");
 	const product_listingId = formData.get("product_listingId");
-	console.log(formData);
+	
 	try {
 		const createReview = await prisma.review.create({
 			data: {
@@ -21,7 +21,6 @@ export async function POST(req) {
 			},
 		});
 		// product_listingId = createReservation.id;
-		console.log(createReview);
 		return NextResponse.json(
 			{ data: createReview, message: "Review created successfully" },
 			{ status: 201 }
