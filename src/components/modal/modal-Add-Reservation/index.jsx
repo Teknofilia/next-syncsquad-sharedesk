@@ -10,7 +10,7 @@ import makeAnimated from 'react-select/animated'
 import DatePicker from "react-datepicker"
 import "react-datepicker/dist/react-datepicker.css"
 import { dataToSelect } from "../../../../helper/dataprocess"
-import { actionSaveReservation } from "./action"
+import { actionSaveReservation, actionSaveReservationDetail } from "./action"
 
 const animatedComponents = makeAnimated()
 
@@ -61,12 +61,20 @@ export default function Addupdatereservation({ id, isShow, setIsShow, dataRoom }
       product_listingId: dataRoom?.id,
     })
 
-    if (responseSave){
-      toast.success("Your data was saved.")
-    }
-    else{
+    if (!responseSave.status){
       toast.error("Saving failed, please try again.")
-    }
+    }    
+
+    let requetReservationDetail = []
+    for (const item of jam) {          
+      requetReservationDetail.push({
+        jamId: item.value,
+        reservationId: responseSave.data.id
+      })
+    }    
+
+    const responseSaveDetail = await actionSaveReservationDetail(requetReservationDetail)
+    toast.success("Your data was saved.")
   }
 
   const customStyles = {
