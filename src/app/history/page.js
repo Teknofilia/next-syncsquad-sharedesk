@@ -21,7 +21,6 @@ export default function HistoryPage({searchParams}) {
   const [detail, setDetail] = useState(null)
   const [id, setId] = useState(false)
   const { name } = searchParams
-  //const data = getHistory(name)
   const dataReview = getDataReview()
 
   /** @param {string} id */
