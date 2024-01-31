@@ -10,7 +10,8 @@ import makeAnimated from 'react-select/animated'
 import DatePicker from "react-datepicker"
 import "react-datepicker/dist/react-datepicker.css"
 import { dataToSelect } from "../../../../helper/dataprocess"
-import { actionSaveReservation, actionSaveReservationDetail } from "./action"
+import { actionSaveReservation, actionSaveReservationDetail, actionSaveReview } from "./action"
+import toast from "react-hot-toast"
 
 const animatedComponents = makeAnimated()
 
@@ -55,7 +56,7 @@ export default function Addupdatereservation({ id, isShow, setIsShow, dataRoom }
 
     const responseSave = await actionSaveReservation({
       reservationDate: startDate,
-      createdBy: "Reza",
+      createdBy: "adn",
       totalPrice: (jam.length * dataRoom?.price),
       userId: dataRoom?.userId,
       product_listingId: dataRoom?.id,
@@ -71,9 +72,16 @@ export default function Addupdatereservation({ id, isShow, setIsShow, dataRoom }
         jamId: item.value,
         reservationId: responseSave.data.id
       })
-    }    
-
+    }
     const responseSaveDetail = await actionSaveReservationDetail(requetReservationDetail)
+
+    const responReview = await actionSaveReview({
+      review: "",
+      userId: dataRoom?.userId,
+      product_listingId: dataRoom?.id,
+      rating: 0,
+    })
+
     toast.success("Your data was saved.")
   }
 

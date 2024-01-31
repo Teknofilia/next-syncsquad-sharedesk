@@ -3,11 +3,11 @@ import { FaEdit } from "react-icons/fa"
 import ModalAddUpdateAccess from '../../components/modal/modal-AddUpdate-History'
 import Componentstar from "../../components/rate"
 
-import { useRouter } from 'next/router'
+//import { useRouter } from 'next/router'
 import { alertSuccess, alertError, alertQuestion } from "../../../helper/sweetalert"
 
 const TableListHistoryComponent = ({data, showModalUpdate}) => {
-  //const query = prisma.$queryRaw`SELECT b.name, c.reservationDate, a.rating, a.review, a.userId, a.product_listingId FROM Review a JOIN Product_Listing b ON b.id = a.product_listingId JOIN Reservation c ON c.product_listingId = b.id`
+  //[data] = ([data] || [])
   //data = (data || [])
   // data = (data || [{
   //   room:"Semeru Room",
@@ -30,6 +30,8 @@ const TableListHistoryComponent = ({data, showModalUpdate}) => {
   //   date:"21 Januari 2024",
   //   comment:"bangkunya cuma 4, mejanya 2, terlalu sempit.."
   // }])
+
+  console.log([data])
     
   return (
   <>
@@ -47,11 +49,11 @@ const TableListHistoryComponent = ({data, showModalUpdate}) => {
               </tr>
             </thead>
             <tbody className="divide-y divide-gray-200  ">
-              {/* {data?.map((data,i) => {
+              {data?.data?.map((data,i) => {
                 return(
                   <>
                     <tr className={`text-gray-900 `}>
-                      <td className="px-6 py-4 text-center uppercase whitespace-pre-line"> {data.room} </td>
+                      <td className="px-6 py-4 text-center uppercase whitespace-pre-line"> {data.product_listingId} </td>
                       <td className="px-6 py-4 text-center uppercase whitespace-pre-line"> {data.date} </td>
                       <td className="px-6 py-4 text-center uppercase whitespace-pre-line">
                         <Componentstar disabled={true} star={data.rate} setStart={(value) => null}/>
@@ -63,7 +65,7 @@ const TableListHistoryComponent = ({data, showModalUpdate}) => {
                     </tr>
                   </>
                 )
-              })} */}
+              })}
             </tbody>
           </table>
         </div>
