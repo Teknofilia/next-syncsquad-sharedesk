@@ -24,7 +24,6 @@ export const Register = () => {
 			body: JSON.stringify({ firstName, lastName, username, email, password }),
 		});
 		const data = await res.json();
-		console.log(data);
 
 		if (res.status === 401) {
 			toast.error("Register failed");

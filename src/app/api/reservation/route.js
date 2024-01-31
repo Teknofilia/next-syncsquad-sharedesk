@@ -23,7 +23,6 @@ export async function POST(req) {
 			},
 		});
 		// product_listingId = createReservation.id;
-		console.log(createReservation);
 		return NextResponse.json(
 			{ data: createReservation, message: "Reservation created successfully" },
 			{ status: 201 }

@@ -41,3 +41,27 @@ export async function actionSaveReservationDetail(data){
   }
 }
 
+export async function actionSaveReview({
+  review,
+  userId,
+  product_listingId,
+  rating
+}){
+  try {
+    const responseCreate = await prisma.review.create({
+      data: {
+        review,
+        userId,
+        product_listingId,      
+        rating
+      },
+      select: {
+        id: true        
+      }
+    })
+    return {status: true, data:responseCreate}
+  } catch (error) {
+    console.log(error)
+    return {status: false, data:{}}
+  }
+}

@@ -192,7 +192,6 @@ export async function POST(req) {
 		});
 
 		product_listingId = createProduct.id;
-		console.log(createProduct);
 	} catch (error) {
 		console.log(error);
 	}
@@ -206,7 +205,6 @@ export async function POST(req) {
 			ContentType: featuredImage.type,
 			Dir: `products/${product_listingId}`,
 		});
-		console.log(uploadFeaturedImage);
 
 		//   Upload images file
 		images.forEach(async (item) => {
@@ -216,7 +214,6 @@ export async function POST(req) {
 				ContentType: item.type,
 				Dir: `products/${product_listingId}`,
 			});
-			console.log(uploadFeaturedImage);
 		});
 	} catch (error) {
 		console.log(error);

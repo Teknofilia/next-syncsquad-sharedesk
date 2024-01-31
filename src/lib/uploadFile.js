@@ -21,7 +21,6 @@ export async function uploadFile({ Body, Key, ContentType, Dir }) {
 
   try {
     const res = await s3Client.send(command);
-    console.log(res);
   } catch (error) {
     console.log(error);
   }
