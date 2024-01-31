@@ -41,6 +41,8 @@ export default function Addupdatehistory({ id, isShow, setIsShow, data }){
       rating: star,
     })
 
+    console.log(responReview.data)
+
     if (!responReview.status){
       toast.error("updating failed, please try again.")
     }

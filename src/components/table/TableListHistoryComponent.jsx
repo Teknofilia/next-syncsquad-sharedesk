@@ -32,7 +32,7 @@ const TableListHistoryComponent = async ({data, showModalUpdate}) => {
                       <td className="px-6 py-4 text-center uppercase whitespace-pre-line"> {data.product_listing.name} </td>
                       <td className="px-6 py-4 text-center uppercase whitespace-pre-line"> {data.product_listing.price} </td>
                       <td className="px-6 py-4 text-center uppercase whitespace-pre-line">
-                        <Componentstar disabled={true} star={data.rate} setStart={(value) => null}/>
+                        <Componentstar disabled={true} star={data.rating} setStart={(value) => null}/>
                       </td>
                       <td className="px-6 py-4 text-center uppercase whitespace-pre-line">{data.review} </td>
                       <td className="px-6 py-4 text-center uppercase whitespace-pre-line flex flex-row justify-center space-x-2">
