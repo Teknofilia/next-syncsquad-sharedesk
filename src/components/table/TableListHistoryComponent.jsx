@@ -1,37 +1,12 @@
 import { useState, useEffect } from "react"
 import { FaEdit } from "react-icons/fa"
+import { actionGetDataReview } from "./action"
 import ModalAddUpdateAccess from '../../components/modal/modal-AddUpdate-History'
 import Componentstar from "../../components/rate"
-
-//import { useRouter } from 'next/router'
 import { alertSuccess, alertError, alertQuestion } from "../../../helper/sweetalert"
 
-const TableListHistoryComponent = ({data, showModalUpdate}) => {
-  //[data] = ([data] || [])
-  //data = (data || [])
-  // data = (data || [{
-  //   room:"Semeru Room",
-  //   id:1,
-  //   rate:3,
-  //   date:"12 Januari 2024",
-  //   comment:"AC-nya dingin, tapi toiletnya bau.."
-  // },
-  // {
-  //   room:"Rinjani Room",
-  //   id:2,
-  //   rate:5,
-  //   date:"16 Januari 2024",
-  //   comment:"Ruangannya besar, TV-nya juga besar dan ada snack-nya.."
-  // },
-  // {
-  //   room:"Leuser Room",
-  //   id:3,
-  //   rate:2,
-  //   date:"21 Januari 2024",
-  //   comment:"bangkunya cuma 4, mejanya 2, terlalu sempit.."
-  // }])
-
-  console.log([data])
+const TableListHistoryComponent = async ({data, showModalUpdate}) => {
+  const dataReview = await actionGetDataReview()
     
   return (
   <>
@@ -42,23 +17,24 @@ const TableListHistoryComponent = ({data, showModalUpdate}) => {
             <thead className="">
               <tr className=" text-white text-left text- ">
                 <th className="sticky top-0 font-semibold text-center bg-blue-800 text-sm uppercase px-6 py-4"> Room </th>
-                <th className="sticky top-0 font-semibold text-center bg-blue-800 text-sm uppercase px-6 py-4"> Date </th>
+                <th className="sticky top-0 font-semibold text-center bg-blue-800 text-sm uppercase px-6 py-4"> Price </th>
                 <th className="sticky top-0 font-semibold text-center bg-blue-800 text-sm uppercase px-6 py-4"> Rate </th>
                 <th className="sticky top-0 font-semibold text-center bg-blue-800 text-sm uppercase px-6 py-4"> Comment </th>
                 <th className="sticky top-0 font-semibold text-center bg-blue-800 text-sm uppercase px-6 py-4">Action</th>
               </tr>
             </thead>
             <tbody className="divide-y divide-gray-200  ">
-              {data?.data?.map((data,i) => {
+              {dataReview?.map((data,index) => {
+                console.log(data)
                 return(
                   <>
-                    <tr className={`text-gray-900 `}>
-                      <td className="px-6 py-4 text-center uppercase whitespace-pre-line"> {data.product_listingId} </td>
-                      <td className="px-6 py-4 text-center uppercase whitespace-pre-line"> {data.date} </td>
+                    <tr key={index} className={`text-gray-900 `}>
+                      <td className="px-6 py-4 text-center uppercase whitespace-pre-line"> {data.product_listing.name} </td>
+                      <td className="px-6 py-4 text-center uppercase whitespace-pre-line"> {data.product_listing.price} </td>
                       <td className="px-6 py-4 text-center uppercase whitespace-pre-line">
                         <Componentstar disabled={true} star={data.rate} setStart={(value) => null}/>
                       </td>
-                      <td className="px-6 py-4 text-center uppercase whitespace-pre-line">{data.comment} </td>
+                      <td className="px-6 py-4 text-center uppercase whitespace-pre-line">{data.review} </td>
                       <td className="px-6 py-4 text-center uppercase whitespace-pre-line flex flex-row justify-center space-x-2">
                         <FaEdit color={'blue'} onClick={ () => showModalUpdate(data.id, data) }/>
                       </td>

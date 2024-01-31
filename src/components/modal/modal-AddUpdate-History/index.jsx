@@ -1,11 +1,12 @@
 import Modal from "react-modal"
 import React, {useEffect, useState} from "react"
-// import { Button } from "../../../components/Button-Component"
 import { Button, Input, Textarea } from "@nextui-org/react"
 import { ImCross } from "react-icons/im"
 import { alertError, alertSucces} from "../../../../helper/sweetalert"
 import { CopySlash } from "lucide-react"
 import Componentstar from "../../../components/rate"
+import { actionUpdateReview } from "./action"
+import toast from "react-hot-toast"
 
 // export default function Addupdatehistory({ isShow, setIsShow, id, refetch, detail }){
 export default function Addupdatehistory({ id, isShow, setIsShow, data }){  
@@ -19,16 +20,32 @@ export default function Addupdatehistory({ id, isShow, setIsShow, data }){
     setStar(id?data.rate : 0)
   },[id, data])  
 
+  useEffect(()=>{
+    setComment(id ? data.review : comment)
+  },comment)  
+
   const submitAddUpdate = async () => {
     if(star === 0){
       alertError("Fail", "Rating cannot be empty.");
       return;
     }
 
-    if(comment === ""){
-      alertError("Fail", "Comment cannot be empty.");
-      return;
+    // if(comment === ""){
+    //   alertError("Fail", "Comment cannot be empty.");
+    //   return;
+    // }
+
+    const responReview = await actionUpdateReview({
+      id: data.id,
+      review: comment,
+      rating: star,
+    })
+
+    if (!responReview.status){
+      toast.error("updating failed, please try again.")
     }
+
+    toast.success("Your data was updated.")
   }
 
   const customStyles = {
@@ -64,12 +81,12 @@ export default function Addupdatehistory({ id, isShow, setIsShow, data }){
                   <div className="bg-white   w-full p-10 mt-5">
                     <div className="w-full mb-4">
                       <p className="mb-2">Room :</p>
-                      <Input disabled type="text" value={id?data.room:""} />
+                      <Input disabled type="text" value={id?data.product_listing.name:""} />
                     </div>
 
                     <div className="w-full mb-4">
-                      <p className="mb-2">Reservation Date :</p>
-                      <Input disabled type="text" value={id?data.date:""} />
+                      <p className="mb-2">Price :</p>
+                      <Input disabled type="text" value={id?data.product_listing.price:""} />
                     </div>
 
                     <div className="w-full mb-4">
@@ -80,9 +97,9 @@ export default function Addupdatehistory({ id, isShow, setIsShow, data }){
                     <div className="w-full mb-4">
                       <p className="mb-2">Comment :</p>
                       <Textarea
-                        value={id?data.comment:""}
+                        value={id ? data.review : comment}
                         label="Description"
-                        placeholder="Enter your description"
+                        placeholder="Enter your comment"
                         className="w-full"
                       />
                     </div>
